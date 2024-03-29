@@ -31,12 +31,12 @@ public class MainApplication extends Application {
 
         Button button = new Button ();
         button.setOnAction(e -> {System.out.println("click");});
-
-        Image image = new Image("card.jpg");
+        // 785 x 1100
+        Image image = new Image("fire10.png");
         ImageView imageView = new ImageView(image);
 //        imageView.setViewport(new Rectangle2D(0, 0, 200, 200));
-        imageView.setFitWidth(200);
-        imageView.setFitHeight(300);
+        imageView.setFitWidth(400);
+        imageView.setFitHeight(550);
         imageView.setX(0);
         imageView.setY(0);
 
