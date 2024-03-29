@@ -34,7 +34,6 @@ public class MainApplication extends Application {
         // 785 x 1100
         Image image = new Image("fire10.png");
         ImageView imageView = new ImageView(image);
-//        imageView.setViewport(new Rectangle2D(0, 0, 200, 200));
         imageView.setFitWidth(400);
         imageView.setFitHeight(550);
         imageView.setX(0);
@@ -44,16 +43,6 @@ public class MainApplication extends Application {
             System.out.println("Hello World");
         });
 
-//        imageView.addEventHandler(CardEvent.ANY, new EventHandler<CardEvent>() {
-//
-//        });
-
-//        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent e) {
-//                System.out.println("Hello World");
-//            }
-//        };
 
         StackPane pane = new StackPane(imageView);
 
