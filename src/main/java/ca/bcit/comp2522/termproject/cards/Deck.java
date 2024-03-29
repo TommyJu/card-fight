@@ -75,7 +75,7 @@ public class Deck {
      * Deals a card by removing from the reserve and adding to the hand.
      */
     public void dealCard() {
-        hand.add(reserve.getFirst());
+        hand.addFirst(reserve.getFirst());
         reserve.removeFirst();
     }
 

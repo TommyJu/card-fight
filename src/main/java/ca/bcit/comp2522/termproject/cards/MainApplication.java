@@ -16,38 +16,49 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.*;
 import javafx.scene.paint.Color;
 
+import java.util.List;
+
 
 public class MainApplication extends Application {
     private static final int HEIGHT = 800;
     private static final int WIDTH = 800;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
+//    public void createCard(Deck deck, Pane pane) {
+//        Card firstCardInHand = deck.getHand().getFirst();
+//        // 785 x 1100 -> 128 x 179
+//        Image image = new Image(firstCardInHand.getImage(), 128, 179, true, true);
+//        ImageView imageView = new ImageView(image);
+//        imageView.setOnMouseClicked((MouseEvent e) -> {
+//            deck.discardCard(firstCardInHand);
+//            deck.dealCard();
+//            pane.getChildren().clear();
+//            createCard(deck, pane);
+//        });
+//        pane.getChildren().add(imageView);
+//    }
 
     @Override
-    public void start(Stage stage) {
+    public void start(final Stage stage) {
         stage.setTitle("Elemental Warfare");
 
-        Button button = new Button ();
-        button.setOnAction(e -> {System.out.println("click");});
-        // 785 x 1100
-        Image image = new Image("fire10.png");
+        Deck deck = new Deck();
+
+        Image image = new Image(deck.getHand().getFirst().getImage(), 128, 179, true, true);
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(400);
-        imageView.setFitHeight(550);
-        imageView.setX(0);
-        imageView.setY(0);
-
         imageView.setOnMouseClicked((MouseEvent e) -> {
-            System.out.println("Hello World");
+            deck.discardCard(deck.getHand().getFirst());
+            deck.dealCard();
+            imageView.setImage(new Image(deck.getHand().getFirst().getImage(), 128, 179, true, true));
         });
-
 
         StackPane pane = new StackPane(imageView);
 
         Scene scene = new Scene(pane, WIDTH, HEIGHT);
         stage.setScene(scene);
         stage.show();
+    }
+    public static void main(final String[] args) {
+        launch(args);
     }
 }
