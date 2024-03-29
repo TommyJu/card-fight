@@ -1,19 +1,34 @@
 package ca.bcit.comp2522.termproject.cards;
+
+import java.util.List;
+
 /**
- * A game card.
+ * A game card with an element and attack value.
  *
  * @author Tommy Ju
  * @version 2024
  */
 public class Card {
     /**
+     * Represents the possible card elements
+     */
+    public final static List<String> ALL_ELEMENTS = List.of("water", "fire", "earth");
+    /**
+     * Represents the maximum attack value
+     */
+    public final static int MIN_ATTACK_VALUE = 1;
+    /**
+     * Represents the minimum attack value
+     */
+    public final static int MAX_ATTACK_VALUE = 10;
+    /**
      * Represents the default element type.
      */
-    public final String DEFAULT_ELEMENT = "fire";
+    public final static String DEFAULT_ELEMENT = "fire";
     /**
      * Represents the default attack power.
      */
-    public final int DEFAULT_ATTACK = 5;
+    public final static int DEFAULT_ATTACK = 5;
     private String element;
     private int attack;
     private String image;
@@ -24,13 +39,13 @@ public class Card {
      * @param attack represents the attack power of the card
      */
     public Card(final String element, final int attack) {
-        if (element.equals("water") || element.equals("fire") || element.equals("grass")) {
+        if (ALL_ELEMENTS.contains(element)) {
             this.element = element;
         } else {
             this.element = DEFAULT_ELEMENT;
         }
 
-        if (attack >= 1 && attack <= 10) {
+        if (attack >= MIN_ATTACK_VALUE && attack <= MAX_ATTACK_VALUE) {
             this.attack = attack;
         } else {
             this.attack = DEFAULT_ATTACK;
