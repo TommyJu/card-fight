@@ -7,7 +7,11 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,6 +37,7 @@ public class MainApplication extends Application {
     }
     @Override
     public void start(final Stage primaryStage) {
+        music();
         Deck deck = new Deck();
         List<ImageView> cardsInHand = deck.createCardsInHand();
 
@@ -52,6 +57,16 @@ public class MainApplication extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+    MediaPlayer mediaPlayer;
+    public void music() {
+        String musicFileName = "sound-tracks/background_music.mp3";
+        Media backGroundMusic = new Media (Path.of(musicFileName).toUri().toString());
+        mediaPlayer = new MediaPlayer(backGroundMusic);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
+    }
+
     public static void main(final String[] args) {
         launch(args);
     }
