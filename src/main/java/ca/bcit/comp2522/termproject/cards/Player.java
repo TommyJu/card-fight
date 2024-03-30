@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.termproject.cards;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Map;
 public abstract class Player {
     private String name;
     private Deck deck;
-    private Map<String, Integer> roundWins;
+    private final Map<String, Integer> roundWins;
 
     /**
      * Constructs a new player.
@@ -18,10 +19,9 @@ public abstract class Player {
     public Player(String name, Deck deck) {
         this.name = name;
         this.deck = deck;
-        // Create key value pairs for each round win using a specific element type
-        for(String element: Card.ALL_ELEMENTS) {
-           this.roundWins.put(element, 0);
-        }
+        this.roundWins = new HashMap<>();
+        resetRoundWins();
+
     }
 
     /**
@@ -57,20 +57,14 @@ public abstract class Player {
     }
 
     /**
-     * Gets the rounds won with each element.
-     * @return a Map to keep count of wins for each element
+     * Resets the rounds won for each element.
      */
-    public Map<String, Integer> getRoundWins() {
-        return this.roundWins;
-    }
-
-    /**
-     * Sets the rounds won for an element
-     * @param key the element
-     * @param value the new value
-     */
-    public void setRoundWins(String key, Integer value) {
-        this.roundWins.put(key, value);
+    public void resetRoundWins() {
+        this.roundWins.clear();
+        // Create key value pairs for each element
+        for(String element: Card.ALL_ELEMENTS) {
+            this.roundWins.put(element, 0);
+        }
     }
 
     /**
