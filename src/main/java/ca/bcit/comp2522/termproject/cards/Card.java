@@ -14,7 +14,7 @@ public class Card {
     /**
      * Represents the possible card elements
      */
-    public final static List<String> ALL_ELEMENTS = List.of("water", "fire", "earth");
+    public final static List<String> ALL_ELEMENTS = List.of("water", "fire", "grass");
     /**
      * Represents the maximum attack value
      */
