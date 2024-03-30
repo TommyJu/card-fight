@@ -14,11 +14,11 @@ public class Card {
     /**
      * Represents the width of the card's image
      */
-    public final static int CARD_IMAGE_WIDTH = 128;
+    public final static int CARD_IMAGE_WIDTH = 220;
     /**
      * Represents the height of the card's image
      */
-    public final static int CARD_IMAGE_HEIGHT = 179;
+    public final static int CARD_IMAGE_HEIGHT = 250;
     /**
      * Represents the possible card elements
      */

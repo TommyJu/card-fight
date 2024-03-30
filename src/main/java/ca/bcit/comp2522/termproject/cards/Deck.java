@@ -83,26 +83,28 @@ public class Deck {
         List<ImageView> cards = new ArrayList<>(); // Stores the resulting images here
 
         List<Card> cardsInHand = this.getHand(); // Create an iterator for cards in hand
-        Iterator<Card> cardsIterator = cardsInHand.iterator();
+        Iterator<Card> cardsInHandIterator = cardsInHand.iterator();
 
-        while (cardsIterator.hasNext()) { // Iterates through cards in hand
-            Card cardInHand = cardsIterator.next();
-            Image cardImage = new Image(
-                    cardInHand.getImage(),
-                    Card.CARD_IMAGE_WIDTH,
-                    Card.CARD_IMAGE_WIDTH,
-                    true,
-                    true);
+        int handPosition = 0;
+        while (cardsInHandIterator.hasNext()) { // Iterates through cards in hand
+            Card cardInHand = cardsInHandIterator.next();
+            Image cardImage = new Image(cardInHand.getImage(),
+                    Card.CARD_IMAGE_WIDTH, Card.CARD_IMAGE_HEIGHT,
+                    true, true);
             ImageView cardImageView = new ImageView(cardImage);
+
             // event handler for the cards in hand
+            int finalHandPosition = handPosition;
             cardImageView.setOnMouseClicked((MouseEvent e) -> {
-                this.discardCard(cardInHand);
-                Card newCard = this.dealNewCard(cardInHand);
+                Card cardToBeReplaced = this.getHand().get(finalHandPosition);
+                // How can we grab the new card in hand on click?
+                Card newCard = this.dealNewCard(cardToBeReplaced);
                 // Update the image for the card that has been dealt
                 cardImageView.setImage(
-                        new Image(newCard.getImage(), Card.CARD_IMAGE_WIDTH, Card.CARD_IMAGE_WIDTH, true, true));
+                        new Image(newCard.getImage(), Card.CARD_IMAGE_WIDTH, Card.CARD_IMAGE_HEIGHT, true, true));
             });
             cards.add(cardImageView);
+            handPosition++;
         }
         return cards;
     }
@@ -110,18 +112,21 @@ public class Deck {
     /**
      * Takes a new card from the reserve, and replaces a card in the player's hand.
      *
-     * @param cardToReplace the Card in hand to replace
+     * @param oldCard the Card in hand to replace
      * @return The new card that has been dealt
      */
-    public Card dealNewCard(final Card cardToReplace) {
+    public Card dealNewCard(final Card oldCard) {
         // current cards in the player's hand
         List<Card> cardsInHand = this.getHand();
-        int cardToReplaceIndex = cardsInHand.indexOf((cardToReplace));
+        int oldCardIndex = cardsInHand.indexOf((oldCard));
 
+        // Take card from reserve
         Card newCard = reserve.getFirst();
         reserve.remove(newCard);
 
-        hand.set(cardToReplaceIndex, newCard);
+        // Discard the old card and replace with a new one
+        this.discardedCards.add(oldCard);
+        hand.set(oldCardIndex, newCard);
         return newCard;
     }
 
