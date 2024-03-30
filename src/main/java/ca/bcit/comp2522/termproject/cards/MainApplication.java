@@ -23,8 +23,20 @@ public class MainApplication extends Application {
 
     private static final int CARDS_IN_HAND_HEIGHT = 500;
     private static final int CARDS_IN_HAND_GAP = 155;
-    public static BackgroundImage createBackgroundImage() {
-        Image backgroundImage = new Image("background.jpg");
+    private static final int GAME_TITLE_HEIGHT = 500;
+    private static final int GAME_TITLE_X_POSITION = 150;
+    private static final int PLAY_BUTTON_X_POSITION = 365;
+    private static final int PLAY_BUTTON_Y_POSITION = 500;
+
+    public void music() {
+        String musicFileName = "sound-tracks/background_music.mp3";
+        Media backGroundMusic = new Media (Path.of(musicFileName).toUri().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(backGroundMusic);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
+    }
+    public static BackgroundImage createBackgroundImage(String fileName) {
+        Image backgroundImage = new Image(fileName);
         BackgroundImage background = new BackgroundImage(backgroundImage,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -60,21 +72,36 @@ public class MainApplication extends Application {
         Pane root = new Pane();
         placeCardsInHand(root, deck);
         placeEnemy(root);
-        BackgroundImage background = createBackgroundImage();
+        BackgroundImage background = createBackgroundImage("game_background.jpg");
         root.setBackground(new Background(background));
         return root;
     }
 
     public static void createStartMenu(Stage primaryStage, Deck deck) {
+        // Create game title
+        Image gameTitleImage = new Image("game_title.png",
+                GAME_TITLE_HEIGHT, GAME_TITLE_HEIGHT,
+                true, true);
+        ImageView gameTitleImageView = new ImageView(gameTitleImage);
+        gameTitleImageView.setX(GAME_TITLE_X_POSITION);
+        // Play button element and event handler
         Button playButton = new Button("PLAY");
-        Pane startWindow = new Pane(playButton);
-        Scene startScene = new Scene(startWindow, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
-        primaryStage.setScene(startScene);
+        playButton.getStyleClass().add("button");
+        playButton.setTranslateX(PLAY_BUTTON_X_POSITION);
+        playButton.setTranslateY(PLAY_BUTTON_Y_POSITION);
         playButton.setOnAction(e -> {
             Pane gameWindow = createGameWindow(deck);
             Scene gameScene = new Scene(gameWindow, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
             primaryStage.setScene(gameScene);
         });
+        Pane root = new Pane(gameTitleImageView, playButton);
+        // Create background image and scene
+        BackgroundImage background = createBackgroundImage("start_background.jpg");
+        root.setBackground(new Background(background));
+        Scene startScene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
+        // Apply CSS to scene
+        startScene.getStylesheets().add("styles.css");
+        primaryStage.setScene(startScene);
     }
     @Override
     public void start(final Stage primaryStage) {
@@ -90,16 +117,6 @@ public class MainApplication extends Application {
 
         primaryStage.show();
     }
-
-    MediaPlayer mediaPlayer;
-    public void music() {
-        String musicFileName = "sound-tracks/background_music.mp3";
-        Media backGroundMusic = new Media (Path.of(musicFileName).toUri().toString());
-        mediaPlayer = new MediaPlayer(backGroundMusic);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
-    }
-
     public static void main(final String[] args) {
         launch(args);
     }
