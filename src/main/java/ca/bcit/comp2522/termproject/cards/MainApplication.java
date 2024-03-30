@@ -15,14 +15,6 @@ public class MainApplication extends Application {
     public void start(final Stage primaryStage) {
         Deck deck = new Deck();
 
-        Image image = new Image(deck.getHand().getFirst().getImage(), 128, 179, true, true);
-        ImageView imageView = new ImageView(image);
-        imageView.setOnMouseClicked((MouseEvent e) -> {
-            deck.discardCard(deck.getHand().getFirst());
-            deck.dealCard();
-            imageView.setImage(new Image(deck.getHand().getFirst().getImage(), 128, 179, true, true));
-        });
-
         // Setting the stage
         Image backgroundImage = new Image("background.jpg");
         BackgroundImage background = new BackgroundImage(backgroundImage,
@@ -30,7 +22,7 @@ public class MainApplication extends Application {
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 new BackgroundSize(1.0, 1.0, true, true, false, false));
-        Pane root = new Pane(imageView);
+        Pane root = new Pane(imageView); // under construction
         root.setBackground(new Background(background));
         Scene scene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
         primaryStage.setTitle("Elemental Warfare");

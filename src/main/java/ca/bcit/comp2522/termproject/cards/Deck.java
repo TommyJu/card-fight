@@ -1,9 +1,10 @@
 package ca.bcit.comp2522.termproject.cards;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Collections;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+
+import java.util.*;
 
 /**
  * Represents a deck of cards comprised of the player's hand and reserve pool.
@@ -19,7 +20,7 @@ public class Deck {
     /**
      * The maximum number of cards a player can have in hand
      */
-    public final int MAX_HAND_SIZE = 5;
+    public final int MAX_CARDS_IN_HAND = 5;
     private List<Card> reserve;
     private List<Card> hand;
     private List<Card> discardedCards;
@@ -39,7 +40,7 @@ public class Deck {
             int randomAttackValue = generator.nextInt(Card.MAX_ATTACK_VALUE) + 1;
             Card newCard = new Card(Card.ALL_ELEMENTS.get(randomElementIndex), randomAttackValue);
             // Distribute deck between the player's hand and their reserve
-            if (i < MAX_HAND_SIZE) {
+            if (i < MAX_CARDS_IN_HAND) {
                 this.hand.add(newCard);
             } else {
                 this.reserve.add(newCard);
@@ -72,11 +73,51 @@ public class Deck {
     }
 
     /**
-     * Deals a card by removing from the reserve and adding to the hand.
+     *
+     * @return
      */
-    public void dealCard() {
-        hand.addFirst(reserve.getFirst());
-        reserve.removeFirst();
+    public List<ImageView> createCardsInHand() {
+        List<ImageView> cards = new ArrayList<>(); // Stores the resulting images here
+
+        List<Card> cardsInHand = this.getHand(); // Create an iterator for cards in hand
+        Iterator<Card> cardsIterator = cardsInHand.iterator();
+
+        while (cardsIterator.hasNext()) { // Iterates through cards in hand
+            Card cardInHand = cardsIterator.next();
+            Image cardImage = new Image(
+                    cardInHand.getImage(),
+                    Card.CARD_IMAGE_WIDTH,
+                    Card.CARD_IMAGE_WIDTH,
+                    true,
+                    true);
+            ImageView cardImageView = new ImageView(cardImage);
+            // event handler for the cards in hand
+            cardImageView.setOnMouseClicked((MouseEvent e) -> {
+                this.discardCard(cardInHand);
+                Card newCard = this.dealNewCard(cardInHand);
+                // Update the image for the card that has been dealt
+                cardImageView.setImage(
+                        new Image(newCard.getImage(), Card.CARD_IMAGE_WIDTH, Card.CARD_IMAGE_WIDTH, true, true));
+            });
+
+            cards.add(cardImageView);
+        }
+        return cards;
+    }
+
+    /**
+     * Deals a card by replacing a card in hand with reserve card.
+     *
+     * @param card the Card in hand to replace
+     * @return The new card that has been dealt
+     */
+    public Card dealNewCard(final Card card) { // rework this method to remove the card at a given index so we can replace the specific card in hand
+        List<Card> cardsInHand = this.getHand();
+        int cardToReplaceIndex = cardsInHand.indexOf((card));
+        Card newCard = reserve.getFirst();
+        reserve.remove(newCard);
+        hand.set(cardToReplaceIndex, newCard);
+        return newCard;
     }
 
     /**
@@ -91,7 +132,7 @@ public class Deck {
 
         Collections.shuffle(reserve);
         // Deal cards
-        for (int i = 0; i < MAX_HAND_SIZE; i++) {
+        for (int i = 0; i < MAX_CARDS_IN_HAND; i++) {
             dealCard();
         }
     }

@@ -12,6 +12,14 @@ import java.util.List;
  */
 public class Card {
     /**
+     * Represents the width of the card's image
+     */
+    public final static int CARD_IMAGE_WIDTH = 128;
+    /**
+     * Represents the height of the card's image
+     */
+    public final static int CARD_IMAGE_HEIGHT = 179;
+    /**
      * Represents the possible card elements
      */
     public final static List<String> ALL_ELEMENTS = List.of("water", "fire", "grass");
