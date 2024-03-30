@@ -39,9 +39,9 @@ public class Card {
      * Represents the default attack power.
      */
     public final static int DEFAULT_ATTACK = 5;
-    private String element;
-    private int attack;
-    private String image;
+    private final String element;
+    private final int attack;
+    private final String image;
 
     /**
      * Constructs a game card.
