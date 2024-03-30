@@ -30,7 +30,10 @@ public class Deck {
      */
     public Deck() {
         this.hand = new ArrayList<>();
-        this.reserve = new ArrayList<>();
+        // NOTE TO MATTHEW: Classes that implement List share a lot of similarities
+        // I was able to use a LinkedList where I originally had an ArrayList
+        // Good example of the substitution principle
+        this.reserve = new LinkedList<>();
         this.discardedCards = new ArrayList<>();
 
         Random generator = new Random();
