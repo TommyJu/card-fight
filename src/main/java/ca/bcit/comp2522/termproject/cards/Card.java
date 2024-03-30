@@ -1,7 +1,5 @@
 package ca.bcit.comp2522.termproject.cards;
 
-import javafx.scene.image.ImageView;
-
 import java.util.List;
 
 /**

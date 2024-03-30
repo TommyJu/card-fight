@@ -2,7 +2,6 @@ package ca.bcit.comp2522.termproject.cards;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -11,7 +10,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,6 +22,15 @@ public class MainApplication extends Application {
 
     private static final int CARDS_IN_HAND_HEIGHT = 500;
     private static final int CARDS_IN_HAND_GAP = 155;
+    public static BackgroundImage createBackgroundImage() {
+        Image backgroundImage = new Image("background.jpg");
+        BackgroundImage background = new BackgroundImage(backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(1.0, 1.0, true, true, false, false));
+        return background;
+    }
     public static void placeCardsInHand(final Pane root, final Deck deck) {
         List<ImageView> cardsInHand = deck.createCardsInHand();
         Iterator<ImageView> cardsInHandIterator = cardsInHand.iterator();
@@ -51,19 +58,13 @@ public class MainApplication extends Application {
     public void start(final Stage primaryStage) {
         music();
         Deck deck = new Deck();
-        List<ImageView> cardsInHand = deck.createCardsInHand();
 
         // Setting the stage
-        Image backgroundImage = new Image("background.jpg");
-        BackgroundImage background = new BackgroundImage(backgroundImage,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                new BackgroundSize(1.0, 1.0, true, true, false, false));
         Pane root = new Pane();
         placeCardsInHand(root, deck);
         placeEnemy(root);
 
+        BackgroundImage background = createBackgroundImage();
         root.setBackground(new Background(background));
         Scene scene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
         primaryStage.setTitle("Card Fight!");
