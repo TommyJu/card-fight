@@ -18,6 +18,9 @@ import java.util.List;
 public class MainApplication extends Application {
     private static final int SCREEN_HEIGHT = 800;
     private static final int SCREEN_WIDTH = 800;
+    private static final int ENEMY_X_POSITION = 350;
+    private static final int ENEMY_HEIGHT = 200;
+    private static final int ENEMY_Y_POSITION = 320;
 
     private static final int CARDS_IN_HAND_HEIGHT = 500;
     private static final int CARDS_IN_HAND_GAP = 155;
@@ -35,6 +38,15 @@ public class MainApplication extends Application {
         }
 
     }
+    public static void placeEnemy(final Pane root) {
+        Image enemyImage = new Image("master_splinter.png",
+                ENEMY_HEIGHT, ENEMY_HEIGHT,
+                true, true);
+        ImageView enemyImageView = new ImageView(enemyImage);
+        enemyImageView.setX(ENEMY_X_POSITION);
+        enemyImageView.setY(ENEMY_Y_POSITION);
+        root.getChildren().add(enemyImageView);
+    }
     @Override
     public void start(final Stage primaryStage) {
         music();
@@ -50,6 +62,7 @@ public class MainApplication extends Application {
                 new BackgroundSize(1.0, 1.0, true, true, false, false));
         Pane root = new Pane();
         placeCardsInHand(root, deck);
+        placeEnemy(root);
 
         root.setBackground(new Background(background));
         Scene scene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
