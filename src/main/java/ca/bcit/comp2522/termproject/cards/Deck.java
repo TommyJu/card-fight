@@ -73,8 +73,8 @@ public class Deck {
     }
 
     /**
-     *
-     * @return
+     * Create the card GUI elements for the player's hand
+     * @return a List containing the cards' ImageView
      */
     public List<ImageView> createCardsInHand() {
         List<ImageView> cards = new ArrayList<>(); // Stores the resulting images here
@@ -99,23 +99,25 @@ public class Deck {
                 cardImageView.setImage(
                         new Image(newCard.getImage(), Card.CARD_IMAGE_WIDTH, Card.CARD_IMAGE_WIDTH, true, true));
             });
-
             cards.add(cardImageView);
         }
         return cards;
     }
 
     /**
-     * Deals a card by replacing a card in hand with reserve card.
+     * Takes a new card from the reserve, and replaces a card in the player's hand.
      *
-     * @param card the Card in hand to replace
+     * @param cardToReplace the Card in hand to replace
      * @return The new card that has been dealt
      */
-    public Card dealNewCard(final Card card) { // rework this method to remove the card at a given index so we can replace the specific card in hand
+    public Card dealNewCard(final Card cardToReplace) {
+        // current cards in the player's hand
         List<Card> cardsInHand = this.getHand();
-        int cardToReplaceIndex = cardsInHand.indexOf((card));
+        int cardToReplaceIndex = cardsInHand.indexOf((cardToReplace));
+
         Card newCard = reserve.getFirst();
         reserve.remove(newCard);
+
         hand.set(cardToReplaceIndex, newCard);
         return newCard;
     }
@@ -124,16 +126,16 @@ public class Deck {
      * Resets the deck and shuffles all cards.
      */
     public void shuffle() {
-        // Add the cards in hand to the reserve
+        // Round up all the cards in the deck
         reserve.addAll(hand);
         reserve.addAll(discardedCards);
-        hand.clear();
         discardedCards.clear();
-
         Collections.shuffle(reserve);
-        // Deal cards
+
+        // Replace cards in hand
         for (int i = 0; i < MAX_CARDS_IN_HAND; i++) {
-            dealCard();
+            Card cardInHand = getHand().get(i);
+            dealNewCard(cardInHand);
         }
     }
 
