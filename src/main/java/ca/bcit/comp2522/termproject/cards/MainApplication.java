@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.termproject.cards;
 import javafx.application.Application;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -54,21 +55,39 @@ public class MainApplication extends Application {
         enemyImageView.setY(ENEMY_Y_POSITION);
         root.getChildren().add(enemyImageView);
     }
+
+    public static Pane createGameWindow(Deck deck) {
+        Pane root = new Pane();
+        placeCardsInHand(root, deck);
+        placeEnemy(root);
+        BackgroundImage background = createBackgroundImage();
+        root.setBackground(new Background(background));
+        return root;
+    }
+
+    public static void createStartMenu(Stage primaryStage, Deck deck) {
+        Button playButton = new Button("PLAY");
+        Pane startWindow = new Pane(playButton);
+        Scene startScene = new Scene(startWindow, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
+        primaryStage.setScene(startScene);
+        playButton.setOnAction(e -> {
+            Pane gameWindow = createGameWindow(deck);
+            Scene gameScene = new Scene(gameWindow, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
+            primaryStage.setScene(gameScene);
+        });
+    }
     @Override
     public void start(final Stage primaryStage) {
         music();
         Deck deck = new Deck();
 
         // Setting the stage
-        Pane root = new Pane();
-        placeCardsInHand(root, deck);
-        placeEnemy(root);
-
-        BackgroundImage background = createBackgroundImage();
-        root.setBackground(new Background(background));
-        Scene scene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
+        createStartMenu(primaryStage, deck);
+//        Pane gameWindow = createGameWindow(deck);
+//        Scene scene = new Scene(gameWindow, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
+//        primaryStage.setScene(scene);
         primaryStage.setTitle("Card Fight!");
-        primaryStage.setScene(scene);
+
         primaryStage.show();
     }
 
