@@ -24,6 +24,7 @@ public class Deck {
     private List<Card> reserve;
     private List<Card> hand;
     private List<Card> discardedCards;
+    private Card cardSelected;
 
     /**
      * Constructs a deck with random cards
@@ -49,6 +50,7 @@ public class Deck {
                 this.reserve.add(newCard);
             }
         }
+        this.cardSelected = null;
     }
 
     /**
@@ -76,6 +78,22 @@ public class Deck {
     }
 
     /**
+     * Gets the card that the user has selected last.
+     * @return the card that has been selected
+     */
+    public Card getCardSelected() {
+        return this.cardSelected;
+    }
+
+    /**
+     * Sets the card that the user has selected.
+     * @param card the card that has been selected
+     */
+    public void setCardSelected(Card card) {
+        this.cardSelected = card;
+    }
+
+    /**
      * Create the card GUI elements for the player's hand
      * @return a List containing the cards' ImageView
      */
@@ -97,6 +115,7 @@ public class Deck {
             int finalHandPosition = handPosition;
             cardImageView.setOnMouseClicked((MouseEvent e) -> {
                 Card cardToBeReplaced = this.getHand().get(finalHandPosition);
+                this.cardSelected = cardToBeReplaced; // Used to compare with the enemy's card
                 // How can we grab the new card in hand on click?
                 Card newCard = this.dealNewCard(cardToBeReplaced);
                 // Update the image for the card that has been dealt
