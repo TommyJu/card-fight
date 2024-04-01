@@ -24,14 +24,14 @@ public class MainApplication extends Application {
     private static final int CARDS_IN_HAND_HEIGHT = 500;
     private static final int CARDS_IN_HAND_GAP = 155;
     private static final int GAME_TITLE_HEIGHT = 500;
-    private static final int GAME_TITLE_X_POSITION = 150;
+    private static final int GAME_TITLE_X_POSITION = 135;
     private static final int PLAY_BUTTON_X_POSITION = 365;
     private static final int PLAY_BUTTON_Y_POSITION = 500;
 
     public void music() {
         String musicFileName = "sound-tracks/background_music.mp3";
-        Media backGroundMusic = new Media (Path.of(musicFileName).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(backGroundMusic);
+        Media backgroundMusic = new Media (Path.of(musicFileName).toUri().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
