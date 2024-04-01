@@ -28,6 +28,7 @@ public class MainApplication extends Application {
     private static final int PLAY_BUTTON_X_POSITION = 365;
     private static final int PLAY_BUTTON_Y_POSITION = 500;
 
+    private static Player player1 = new HumanPlayer("hey", null);
     public void music() {
         String musicFileName = "sound-tracks/background_music.mp3";
         Media backgroundMusic = new Media (Path.of(musicFileName).toUri().toString());
@@ -93,6 +94,7 @@ public class MainApplication extends Application {
             Pane gameWindow = createGameWindow(deck);
             Scene gameScene = new Scene(gameWindow, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
             primaryStage.setScene(gameScene);
+            startMatch(player1);
         });
         Pane root = new Pane(gameTitleImageView, playButton);
         // Create background image and scene
@@ -103,6 +105,12 @@ public class MainApplication extends Application {
         startScene.getStylesheets().add("styles.css");
         primaryStage.setScene(startScene);
     }
+
+    public static void startMatch(Player p1) {
+        System.out.println("test start?");
+        new Match(p1);
+    }
+
     @Override
     public void start(final Stage primaryStage) {
         music();
