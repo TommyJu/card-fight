@@ -108,7 +108,7 @@ public class MainApplication extends Application {
 
     public static void startMatch(Player p1) {
         System.out.println("test start?");
-        new Match(p1);
+        new Game(p1);
     }
 
     @Override
