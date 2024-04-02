@@ -28,6 +28,24 @@ public class Match {
         }
     }
 
+    /**
+     * Run a round of a match.
+     */
+    public void playMatch() {
+        Card P1card;
+        Card P2card;
+        P1card = player1.getSelectedCard();
+        P2card = player2.getSelectedCard();
+        determineRound(P1card, P2card);
+        if (isWinner(getP1Wins())) {
+            // do things for winning
+            System.out.println("You win");
+        }
+        if (isWinner(getP2Wins())) {
+            // things for AI winning
+            System.out.println("you lose");
+        }
+    }
 
     /**
      * Determines if there is a winner(3 of an element).
