@@ -24,6 +24,10 @@ public abstract class Player {
 
     }
 
+    /**
+     * Gets the card selected by player.
+     * @return Card selected by player
+     */
     public Card getSelectedCard(){
         return this.getDeck().getCardSelected();
     }
