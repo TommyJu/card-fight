@@ -24,6 +24,10 @@ public abstract class Player {
 
     }
 
+    public Card getSelectedCard(){
+        return this.getDeck().getCardSelected();
+    }
+
     /**
      * Gets the name of the player.
      * @return the player name
