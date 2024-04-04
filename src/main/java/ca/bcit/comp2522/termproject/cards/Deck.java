@@ -3,6 +3,7 @@ package ca.bcit.comp2522.termproject.cards;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.util.*;
 
@@ -94,31 +95,36 @@ public class Deck {
     }
 
     /**
-     * Create the card GUI elements for the player's hand
+     * Creates the card GUI elements for the player's hand which control the flow of the game.
+     *
      * @return a List containing the cards' ImageView
      */
     public List<ImageView> createCardsInHand() {
-        List<ImageView> cards = new ArrayList<>(); // Stores the resulting images here
-
-        List<Card> cardsInHand = this.getHand(); // Create an iterator for cards in hand
+        // Stores the cards created here
+        List<ImageView> cards = new ArrayList<>();
+        // Creates an iterator for the cards in hand
+        List<Card> cardsInHand = this.getHand();
         Iterator<Card> cardsInHandIterator = cardsInHand.iterator();
-
+        // Iterates through the cards in hand
         int handPosition = 0;
-        while (cardsInHandIterator.hasNext()) { // Iterates through cards in hand
+        while (cardsInHandIterator.hasNext()) {
             Card cardInHand = cardsInHandIterator.next();
+            // Creates an image for the card using the card's image file name
             Image cardImage = new Image(cardInHand.getImage(),
                     Card.CARD_IMAGE_WIDTH, Card.CARD_IMAGE_HEIGHT,
                     true, true);
+            // Creates the ImageView that will be placed on the GUI
             ImageView cardImageView = new ImageView(cardImage);
 
-            // event handler for the cards in hand
+            // Adds an event handler to the ImageView
             int finalHandPosition = handPosition;
             cardImageView.setOnMouseClicked((MouseEvent e) -> {
                 Card cardToBeReplaced = this.getHand().get(finalHandPosition);
-                this.cardSelected = cardToBeReplaced; // Used to compare with the enemy's card
-                // How can we grab the new card in hand on click?
+                // Saves the card selected to determine the round winner
+                this.cardSelected = cardToBeReplaced;
+                // Replaces the selected card with a new card
                 Card newCard = this.dealNewCard(cardToBeReplaced);
-                // Update the image for the card that has been dealt
+                // Updates the image for the new card that has been dealt
                 cardImageView.setImage(
                         new Image(newCard.getImage(), Card.CARD_IMAGE_WIDTH, Card.CARD_IMAGE_HEIGHT, true, true));
             });

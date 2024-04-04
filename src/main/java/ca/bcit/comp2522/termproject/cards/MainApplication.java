@@ -94,7 +94,7 @@ public class MainApplication extends Application {
             Pane gameWindow = createGameWindow(deck);
             Scene gameScene = new Scene(gameWindow, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
             primaryStage.setScene(gameScene);
-            startMatch(player1);
+//            startMatch(player1);
         });
         Pane root = new Pane(gameTitleImageView, playButton);
         // Create background image and scene
@@ -106,10 +106,10 @@ public class MainApplication extends Application {
         primaryStage.setScene(startScene);
     }
 
-    public static void startMatch(Player p1) {
-        System.out.println("test start?");
-        new Game(p1);
-    }
+//    public static void startMatch(Player p1) {
+//        System.out.println("test start?");
+//        new Game(p1);
+//    }
 
     @Override
     public void start(final Stage primaryStage) {

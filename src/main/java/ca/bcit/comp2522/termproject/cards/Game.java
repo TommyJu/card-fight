@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.termproject.cards;
 
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,41 +10,60 @@ import java.util.HashMap;
  */
 public class Game {
 
-
-    public final static Player splinter = new AIPlayer("splinter");
-    public final int winCondition = 3;
+    /**
+     * Determines default AI player.
+     */
+    public final static Player SPLINTER = new AIPlayer("Splinter");
+    /**
+     * Determines how many wins with an element are required to win the game.
+     */
+    public final static int WIN_CONDITION = 3; // Three wins with the same element
     private final Player player1;
     private final Player player2;
 
-    private HashMap<Integer, ArrayList<Card>> P1Wins = new HashMap<>();
-    private HashMap<Integer, ArrayList<Card>> P2Wins = new HashMap<>();
+    private final HashMap<Integer, ArrayList<Card>> P1Wins = new HashMap<>();
+    private final HashMap<Integer, ArrayList<Card>> P2Wins = new HashMap<>();
+    private final Stage primaryStage;
     private static final boolean[] P1winsArray = {false, true, false};
-    public Game(Player player1){
-        this.player1 = player1;
-        this.player2 = splinter;
 
-        for (int i = 1; i < (winCondition+1); i++) {
+    public Game(Stage primaryStage, Player player1) {
+        this.primaryStage = primaryStage;
+        this.player1 = player1;
+        this.player2 = SPLINTER;
+
+        for (int i = 1; i < (WIN_CONDITION + 1); i++) {
             P1Wins.put(i, new ArrayList<>());
             P2Wins.put(i, new ArrayList<>());
         }
     }
 
     /**
-     * Run a round of a match.
+     * Gets the game's primary stage.
+     * @return a javaFX Stage
      */
-    public void playMatch() {
-        Card P1card;
-        Card P2card;
-        P1card = player1.getSelectedCard();
-        P2card = player2.getSelectedCard();
+    public Stage getPrimaryStage() {
+        return this.primaryStage;
+    }
+
+    /**
+     * Runs a round of card fight.
+     * @param P1card the card of player 1
+     * @param P2card the card of player 2
+     *
+     */
+    public void playMatch(Card P1card, Card P2card) {
+//        P1card = player1.getSelectedCard();
+//        P2card = player2.getSelectedCard();
         determineRound(P1card, P2card);
         if (isWinner(getP1Wins())) {
             // do things for winning
             System.out.println("You win");
+
         }
         if (isWinner(getP2Wins())) {
             // things for AI winning
             System.out.println("you lose");
+
         }
     }
 
@@ -61,7 +82,7 @@ public class Game {
     }
 
     /**
-     * Determines result of round.
+     * Determines result of round and adds a win to a player.
      * @param P1card Card representing the card player 1 played.
      * @param P2card card representing the card player 2 played
      */
@@ -87,7 +108,7 @@ public class Game {
     }
 
     /**
-     * Determimes if player1 wins by type.
+     * Determines if player1 wins by type.
      * @param P1card represents the card played by player 1
      * @param P2card represents the card played by player2
      * @return boolean value, true if P1 wins
