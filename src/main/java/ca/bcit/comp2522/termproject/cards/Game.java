@@ -82,26 +82,37 @@ public class Game {
      * Determines result of round and adds a win to a player.
      * @param P1card Card representing the card player 1 played.
      * @param P2card card representing the card player 2 played
+     * @return a boolean which is true if player 1 wins
      */
-    public void determineRound(Card P1card, Card P2card){
+    public boolean determineRound(Card P1card, Card P2card){
         if (sameElement(P1card, P2card)){ // checking elements
             if (isSameAttack(P1card, P2card)){
                 System.out.println("its a draw");
                 //neither players will receive a win
+                // AI card selection prevents ties, this code is redundant
             } else {
                 if (P1WinsByAttack(P1card, P2card)) {
                     P1Wins.get(getCardElementValue(P1card)).add(P1card);
+                    System.out.println("p1 round win");
+                    return true;
                 } else {
                     P2Wins.get(getCardElementValue(P1card)).add(P2card);
+                    System.out.println("p2 round win");
+                    return false;
                 }
             }
         } else { // round determined by type
             if (P1WinsByElement(P1card, P2card)) {
                 P1Wins.get(getCardElementValue(P1card)).add(P1card);
+                System.out.println("p1 round win");
+                return true;
             } else {
                 P2Wins.get(getCardElementValue(P1card)).add(P2card);
+                System.out.println("p2 round win");
+                return false;
             }
         }
+        return false; // p2 wins by type
     }
 
     /**

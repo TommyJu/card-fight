@@ -3,6 +3,7 @@ package ca.bcit.comp2522.termproject.cards;
 import javafx.scene.image.Image;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A game card with an element and attack value.
@@ -96,5 +97,18 @@ public class Card {
      */
     public Image getImage() {
         return this.image;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return attack == card.attack && Objects.equals(element, card.element) && Objects.equals(imageFile, card.imageFile) && Objects.equals(image, card.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(element, attack, imageFile, image);
     }
 } // end of class

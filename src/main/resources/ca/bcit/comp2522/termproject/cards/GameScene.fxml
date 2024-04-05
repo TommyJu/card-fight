@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" styleClass="background" stylesheets="@game_scene.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.bcit.comp2522.termproject.cards.GameSceneController">
    <children>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="401.0" layoutY="215.0" mnemonicParsing="false" onAction="#switchToStartScene" text="Scene2" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="39.0" mnemonicParsing="false" onAction="#switchToStartScene" text="Scene2" />
       <ImageView fx:id="thirdCardInHand" fitHeight="253.0" fitWidth="181.0" layoutX="407.0" layoutY="531.0" onMouseClicked="#thirdCardOnClick" pickOnBounds="true" preserveRatio="true" styleClass="card">
          <image>
             <Image url="@../../../../../water10.png" />
@@ -31,6 +31,16 @@
       <ImageView fx:id="fifthCardInHand" fitHeight="253.0" fitWidth="181.0" layoutX="773.0" layoutY="524.0" onMouseClicked="#fifthCardOnClick" pickOnBounds="true" preserveRatio="true" styleClass="card">
          <image>
             <Image url="@../../../../../water10.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="AISelectedCardDisplay" fitHeight="269.0" fitWidth="192.0" layoutX="289.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../fire9.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="playerSelectedCardDisplay" fitHeight="269.0" fitWidth="192.0" layoutX="532.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../fire9.png" />
          </image>
       </ImageView>
    </children>
