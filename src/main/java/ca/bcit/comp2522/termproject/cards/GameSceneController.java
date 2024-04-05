@@ -55,12 +55,19 @@ public class GameSceneController {
         }
     }
 
-    public void switchToStartScene(ActionEvent event) throws IOException {
+//    public void switchToStartScene(ActionEvent event) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
+//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+
+    public void switchToStartScene() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        StartSceneController.stage.setScene(scene);
+        StartSceneController.stage.show();
     }
 
 //    @FXML
@@ -75,6 +82,23 @@ public class GameSceneController {
     public void updateSelectedCardsDisplay(Card player1Card, Card AICard) {
         AISelectedCardDisplay.setImage(AICard.getImage());
         playerSelectedCardDisplay.setImage(player1Card.getImage());
+        AISelectedCardDisplay.setVisible(true);
+        playerSelectedCardDisplay.setVisible(true);
+    }
+
+    public void exitOnGameWin() {
+        Player gameWinner = game.determineGameWinner();
+        if (gameWinner == null) {
+            return;
+        }
+        else {
+            try {
+                switchToStartScene();
+            } catch (IOException e) {
+                System.err.println("Failed to switch from game scene to start scene.");
+            }
+
+        }
     }
 
     // Card on click methods
@@ -84,6 +108,7 @@ public class GameSceneController {
         firstCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        exitOnGameWin();
     }
 
     public void secondCardOnClick() {
@@ -92,6 +117,7 @@ public class GameSceneController {
         secondCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        exitOnGameWin();
     }
 
     public void thirdCardOnClick() {
@@ -100,6 +126,7 @@ public class GameSceneController {
         thirdCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        exitOnGameWin();
     }
 
     public void fourthCardOnClick() {
@@ -108,6 +135,7 @@ public class GameSceneController {
         fourthCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        exitOnGameWin();
     }
 
     public void fifthCardOnClick() {
@@ -116,5 +144,6 @@ public class GameSceneController {
         fifthCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        exitOnGameWin();
     }
 }
