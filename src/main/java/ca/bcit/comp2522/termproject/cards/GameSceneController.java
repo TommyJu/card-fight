@@ -13,9 +13,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GameSceneController {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    private static Stage stage;
+    private static Scene scene;
+    private static Game game;
 
     @FXML
     private ImageView firstCardInHand;
@@ -27,6 +27,11 @@ public class GameSceneController {
     private ImageView fourthCardInHand;
     @FXML
     private ImageView fifthCardInHand;
+
+    // This method is automatically called by the FXML loader
+    public void initialize() {
+
+    }
 
     public void switchToStartScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
