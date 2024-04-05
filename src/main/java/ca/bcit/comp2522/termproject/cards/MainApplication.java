@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.termproject.cards;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
@@ -29,10 +32,11 @@ public class MainApplication extends Application {
     private static final int PLAY_BUTTON_Y_POSITION = 500;
 
     private static Player player1 = new HumanPlayer("hey", null);
+    MediaPlayer mediaPlayer;
     public void music() {
         String musicFileName = "sound-tracks/background_music.mp3";
         Media backgroundMusic = new Media (Path.of(musicFileName).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
+        mediaPlayer = new MediaPlayer(backgroundMusic);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
@@ -117,13 +121,22 @@ public class MainApplication extends Application {
         Deck deck = new Deck();
 
         // Setting the stage
-        createStartMenu(primaryStage, deck);
+//        createStartMenu(primaryStage, deck);
 //        Pane gameWindow = createGameWindow(deck);
 //        Scene scene = new Scene(gameWindow, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
 //        primaryStage.setScene(scene);
-        primaryStage.setTitle("Card Fight!");
-
-        primaryStage.show();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
+            Scene scene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
+//            scene.getStylesheets().add(getClass().getResource("start_scene.css").toExternalForm());
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Card Fight!");
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Failed to open FXML file");
+        } catch (Exception e) {
+            System.err.println("Error loading starting screen");
+        }
     }
     public static void main(final String[] args) {
         launch(args);

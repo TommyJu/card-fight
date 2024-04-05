@@ -1,0 +1,17 @@
+.background {
+    -fx-background-image: url("start_background.jpg");
+    -fx-background-position: center;
+    -fx-background-size: cover;
+}
+
+.button {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: white;
+}
