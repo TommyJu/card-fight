@@ -13,13 +13,13 @@ public class Game {
     /**
      * Determines default AI player.
      */
-    public final static Player SPLINTER = new AIPlayer("Splinter");
+    public final static AIPlayer SPLINTER = new AIPlayer("Splinter");
     /**
      * Determines how many wins with an element are required to win the game.
      */
     public final static int WIN_CONDITION = 3; // Three wins with the same element
     private final Player player1;
-    private final Player player2;
+    private final AIPlayer AIPlayer;
 
     private final HashMap<Integer, ArrayList<Card>> P1Wins = new HashMap<>();
     private final HashMap<Integer, ArrayList<Card>> P2Wins = new HashMap<>();
@@ -27,7 +27,7 @@ public class Game {
 
     public Game(Player player1) {
         this.player1 = player1;
-        this.player2 = SPLINTER;
+        this.AIPlayer = SPLINTER;
 
         for (int i = 1; i < (WIN_CONDITION + 1); i++) {
             P1Wins.put(i, new ArrayList<>());
@@ -36,25 +36,32 @@ public class Game {
     }
 
     /**
-     * Runs a round of card fight.
-     * @param P1card the card of player 1
-     * @param P2card the card of player 2
-     *
+     * Determines if a player has won the game
+     * @return the player that has one or null
      */
-    public void playMatch(Card P1card, Card P2card) {
-//        P1card = player1.getSelectedCard();
-//        P2card = player2.getSelectedCard();
-        determineRound(P1card, P2card);
+    public Player determineGameWinner() {
         if (isWinner(getP1Wins())) {
             // do things for winning
             System.out.println("You win");
-
+            return player1;
         }
         if (isWinner(getP2Wins())) {
             // things for AI winning
             System.out.println("you lose");
-
+            return AIPlayer;
         }
+        return null;
+    }
+
+    /**
+     * Runs a round of card fight.
+     * @param P1card the card of player 1
+     * @return the card that the AI has selected
+     */
+    public Card playRoundAgainstAI(Card P1card) {
+        Card P2card = AIPlayer.pickRandomCard(P1card);
+        determineRound(P1card, P2card);
+        return P2card;
     }
 
     /**
@@ -100,7 +107,7 @@ public class Game {
     /**
      * Determines if player1 wins by type.
      * @param P1card represents the card played by player 1
-     * @param P2card represents the card played by player2
+     * @param P2card represents the card played by AIPlayer
      * @return boolean value, true if P1 wins
      */
     public boolean P1WinsByElement(Card P1card, Card P2card) {
@@ -175,11 +182,11 @@ public class Game {
     }
 
     /**
-     * Gets player2 im a match.
-     * @return a Player representing the player2
+     * Gets AIPlayer im a match.
+     * @return a Player representing the AIPlayer
      */
     public Player getPlayer2(){
-        return this.player2;
+        return this.AIPlayer;
     }
 
     /**
