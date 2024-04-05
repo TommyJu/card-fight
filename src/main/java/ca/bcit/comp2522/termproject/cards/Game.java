@@ -23,11 +23,9 @@ public class Game {
 
     private final HashMap<Integer, ArrayList<Card>> P1Wins = new HashMap<>();
     private final HashMap<Integer, ArrayList<Card>> P2Wins = new HashMap<>();
-    private final Stage primaryStage;
     private static final boolean[] P1winsArray = {false, true, false};
 
-    public Game(Stage primaryStage, Player player1) {
-        this.primaryStage = primaryStage;
+    public Game(Player player1) {
         this.player1 = player1;
         this.player2 = SPLINTER;
 
@@ -35,14 +33,6 @@ public class Game {
             P1Wins.put(i, new ArrayList<>());
             P2Wins.put(i, new ArrayList<>());
         }
-    }
-
-    /**
-     * Gets the game's primary stage.
-     * @return a javaFX Stage
-     */
-    public Stage getPrimaryStage() {
-        return this.primaryStage;
     }
 
     /**

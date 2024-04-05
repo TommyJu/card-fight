@@ -23,7 +23,7 @@
             <Image url="@../../../../../water10.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="firstCardInHand" fitHeight="253.0" fitWidth="181.0" layoutX="37.0" layoutY="525.0" onMouseClicked="#setImage" pickOnBounds="true" preserveRatio="true" styleClass="card">
+      <ImageView fx:id="firstCardInHand" fitHeight="253.0" fitWidth="181.0" layoutX="37.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true" styleClass="card">
          <image>
             <Image url="@../../../../../water10.png" />
          </image>

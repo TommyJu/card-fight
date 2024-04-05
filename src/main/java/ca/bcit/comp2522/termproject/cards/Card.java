@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.termproject.cards;
 
+import javafx.scene.image.Image;
+
 import java.util.List;
 
 /**
@@ -39,7 +41,8 @@ public class Card {
     public final static int DEFAULT_ATTACK = 5;
     private final String element;
     private final int attack;
-    private final String image;
+    private final String imageFile;
+    private final Image image;
 
     /**
      * Constructs a game card.
@@ -59,8 +62,8 @@ public class Card {
             this.attack = DEFAULT_ATTACK;
         }
 
-        this.image = element + attack + ".png";
-
+        this.imageFile = element + attack + ".png";
+        this.image = new Image(this.imageFile);
     }
 
     /**
@@ -83,7 +86,15 @@ public class Card {
      * Gets the image file name for the card.
      * @return a String representing the card image file
      */
-    public String getImage() {
+    public String getImageFile() {
+        return this.imageFile;
+    }
+
+    /**
+     * Gets the Image for the card.
+     * @return a String representing the card image file
+     */
+    public Image getImage() {
         return this.image;
     }
 } // end of class

@@ -16,10 +16,10 @@ public class StartSceneController {
     private static Scene scene;
 //    private Parent root;
     public static Player player1;
+    public static Player player2;
 
     @FXML
     Label testLabel;
-
 
     // This method is automatically called by the FXML loader
     public void initialize() {

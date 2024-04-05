@@ -18,19 +18,13 @@ public class GameSceneController {
     private static Game game;
 
     @FXML
-    private ImageView firstCardInHand;
-    @FXML
-    private ImageView secondCardInHand;
-    @FXML
-    private ImageView thirdCardInHand;
-    @FXML
-    private ImageView fourthCardInHand;
-    @FXML
-    private ImageView fifthCardInHand;
+    private ImageView firstCardInHand, secondCardInHand, thirdCardInHand, fourthCardInHand, fifthCardInHand;
 
     // This method is automatically called by the FXML loader
     public void initialize() {
-
+        // A game is created with the player initialized on the start screen
+        game = new Game(StartSceneController.player1);
+        updateCardImages();
     }
 
     public void switchToStartScene(ActionEvent event) throws IOException {
@@ -41,8 +35,12 @@ public class GameSceneController {
         stage.show();
     }
 
-    public void setImage() {
-        fifthCardInHand.setImage(new Image("master_splinter.png"));
+    public void updateCardImages() {
+        firstCardInHand.setImage(game.getPlayer1().getDeck().getHand().get(0).getImage());
+        secondCardInHand.setImage(game.getPlayer1().getDeck().getHand().get(1).getImage());
+        thirdCardInHand.setImage(game.getPlayer1().getDeck().getHand().get(2).getImage());
+        fourthCardInHand.setImage(game.getPlayer1().getDeck().getHand().get(3).getImage());
+        fifthCardInHand.setImage(game.getPlayer1().getDeck().getHand().get(4).getImage());
     }
 
     public void startGame() {
