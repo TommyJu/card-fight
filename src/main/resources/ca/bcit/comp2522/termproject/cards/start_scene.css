@@ -1,7 +1,7 @@
 .background {
-    -fx-background-image: url("start_background.jpg");
-    -fx-background-position: center;
-    -fx-background-size: cover;
+    -fx-background-image: url("../../../../../start_background.jpg");
+    -fx-background-size: stretch;
+    -fx-background-position: center center;
 }
 
 .button {

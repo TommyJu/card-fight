@@ -127,7 +127,7 @@ public class MainApplication extends Application {
 //        primaryStage.setScene(scene);
         try {
             Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
-            Scene scene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT, Color.WHITE);
+            Scene scene = new Scene(root);
 //            scene.getStylesheets().add(getClass().getResource("start_scene.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setTitle("Card Fight!");
