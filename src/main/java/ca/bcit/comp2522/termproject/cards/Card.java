@@ -104,7 +104,7 @@ public class Card {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
-        return attack == card.attack && Objects.equals(element, card.element) && Objects.equals(imageFile, card.imageFile) && Objects.equals(image, card.image);
+        return attack == card.attack && element.equals(card.element);
     }
 
     @Override

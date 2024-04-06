@@ -90,29 +90,30 @@ public class Game {
             if (isSameAttack(P1card, P2card)){
                 System.out.println("its a draw");
                 //neither players will receive a win
-                // AI card selection prevents ties, this code is redundant
+                // AI card selection should prevent ties
             } else {
                 if (P1WinsByAttack(P1card, P2card)) {
                     P1Wins.get(getCardElementValue(P1card)).add(P1card);
-                    System.out.println("p1 round win");
+                    System.out.println("p1 round win by attack");
                     return true;
                 } else {
-                    P2Wins.get(getCardElementValue(P1card)).add(P2card);
-                    System.out.println("p2 round win");
+                    P2Wins.get(getCardElementValue(P2card)).add(P2card);
+                    System.out.println("p2 round win by attack");
                     return false;
                 }
             }
         } else { // round determined by type
             if (P1WinsByElement(P1card, P2card)) {
                 P1Wins.get(getCardElementValue(P1card)).add(P1card);
-                System.out.println("p1 round win");
+                System.out.println("p1 round win by type");
                 return true;
             } else {
-                P2Wins.get(getCardElementValue(P1card)).add(P2card);
-                System.out.println("p2 round win");
+                P2Wins.get(getCardElementValue(P2card)).add(P2card);
+                System.out.println("p2 round win by type");
                 return false;
             }
         }
+        System.out.println("error in determine winner logic");
         return false; // p2 wins by type
     }
 
