@@ -95,46 +95,6 @@ public class Deck {
     }
 
     /**
-     * Creates the card GUI elements for the player's hand which control the flow of the game.
-     *
-     * @return a List containing the cards' ImageView
-     */
-//    public List<ImageView> createCardsInHand() {
-//        // Stores the cards created here
-//        List<ImageView> cards = new ArrayList<>();
-//        // Creates an iterator for the cards in hand
-//        List<Card> cardsInHand = this.getHand();
-//        Iterator<Card> cardsInHandIterator = cardsInHand.iterator();
-//        // Iterates through the cards in hand
-//        int handPosition = 0;
-//        while (cardsInHandIterator.hasNext()) {
-//            Card cardInHand = cardsInHandIterator.next();
-//            // Creates an image for the card using the card's image file name
-//            Image cardImage = new Image(cardInHand.getImage(),
-//                    Card.CARD_IMAGE_WIDTH, Card.CARD_IMAGE_HEIGHT,
-//                    true, true);
-//            // Creates the ImageView that will be placed on the GUI
-//            ImageView cardImageView = new ImageView(cardImage);
-//
-//            // Adds an event handler to the ImageView
-//            int finalHandPosition = handPosition;
-//            cardImageView.setOnMouseClicked((MouseEvent e) -> {
-//                Card cardToBeReplaced = this.getHand().get(finalHandPosition);
-//                // Saves the card selected to determine the round winner
-//                this.cardSelected = cardToBeReplaced;
-//                // Replaces the selected card with a new card
-//                Card newCard = this.dealNewCard(cardToBeReplaced);
-//                // Updates the image for the new card that has been dealt
-//                cardImageView.setImage(
-//                        new Image(newCard.getImage(), Card.CARD_IMAGE_WIDTH, Card.CARD_IMAGE_HEIGHT, true, true));
-//            });
-//            cards.add(cardImageView);
-//            handPosition++;
-//        }
-//        return cards;
-//    }
-
-    /**
      * Takes a new card from the reserve, and replaces a card in the player's hand.
      *
      * @param oldCard the Card in hand to replace

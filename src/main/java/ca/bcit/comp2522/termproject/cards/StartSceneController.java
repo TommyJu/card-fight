@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,12 +13,8 @@ import java.io.IOException;
 public class StartSceneController {
     public static Stage stage;
     private static Scene scene;
-//    private Parent root;
     public static Player player1;
-    public static Player player2;
 
-    @FXML
-    Label testLabel;
 
     // This method is automatically called by the FXML loader
     public void initialize() {
@@ -33,9 +28,5 @@ public class StartSceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void test() {
-        testLabel.setText(player1.getName());
     }
 }

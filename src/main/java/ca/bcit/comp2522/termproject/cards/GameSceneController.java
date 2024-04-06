@@ -55,29 +55,12 @@ public class GameSceneController {
         }
     }
 
-//    public void switchToStartScene(ActionEvent event) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
-//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-
     public void switchToStartScene() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
         scene = new Scene(root);
         StartSceneController.stage.setScene(scene);
         StartSceneController.stage.show();
     }
-
-//    @FXML
-//    public void updateCardImages() {
-//        firstCardInHand.setImage(player1Hand.get(0).getImage());
-//        secondCardInHand.setImage(player1Hand.get(1).getImage());
-//        thirdCardInHand.setImage(player1Hand.get(2).getImage());
-//        fourthCardInHand.setImage(player1Hand.get(3).getImage());
-//        fifthCardInHand.setImage(player1Hand.get(4).getImage());
-//    }
 
     public void updateSelectedCardsDisplay(Card player1Card, Card AICard) {
         AISelectedCardDisplay.setImage(AICard.getImage());
