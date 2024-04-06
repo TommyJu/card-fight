@@ -21,7 +21,7 @@ public class Game {
     private final Player player1;
     private final AIPlayer AIPlayer;
     private Boolean isPreviousRoundWon;
-
+    // Fire is 1, water is 2, and grass is 3
     private final HashMap<Integer, ArrayList<Card>> P1Wins = new HashMap<>();
     private final HashMap<Integer, ArrayList<Card>> P2Wins = new HashMap<>();
     private static final boolean[] P1winsArray = {false, true, false};
@@ -194,7 +194,7 @@ public class Game {
     }
 
     /**
-     * Gets AIPlayer im a match.
+     * Gets AIPlayer in a match.
      * @return a Player representing the AIPlayer
      */
     public Player getPlayer2(){

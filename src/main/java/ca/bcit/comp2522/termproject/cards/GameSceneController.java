@@ -29,6 +29,8 @@ public class GameSceneController {
     private ImageView AISelectedCardDisplay, playerSelectedCardDisplay;
     @FXML
     private Label player1Name, player2Name, roundResult;
+    @FXML
+    private Label player1FireWins, player1GrassWins, player1WaterWins, player2FireWins, player2GrassWins, player2WaterWins;
     private FadeTransition AISelectedCardAnimation, playerSelectedCardAnimation;
 
     // This method is automatically called by the FXML loader
@@ -87,13 +89,51 @@ public class GameSceneController {
         return fade;
     }
 
-    public void updateRoundResult() {
+    public void updateRoundResult(Card player1Card, Card player2Card) {
         if (game.getIsPreviousRoundWon()) {
             roundResult.setText(player1.getName() + " has won this round!");
             roundResult.setTextFill(Color.GREEN);
+            String elementToUpdate = player1Card.getElement();
+            updatePlayer1WinCounter(elementToUpdate);
         } else {
             roundResult.setText(game.getPlayer2().getName() + " has won this round!");
             roundResult.setTextFill(Color.RED);
+            String elementToUpdate = player2Card.getElement();
+            updatePlayer2WinCounter(elementToUpdate);
+        }
+    }
+
+    public void updatePlayer1WinCounter(String element) {
+        switch(element) {
+            case "fire" -> {
+                int fireWins = game.getP1Wins().get(1).size();
+                player1FireWins.setText(String.valueOf(fireWins));
+            }
+            case "water" -> {
+                int waterWins = game.getP1Wins().get(2).size();
+                player1WaterWins.setText(String.valueOf(waterWins));
+            }
+            case "grass" -> {
+                int grassWins = game.getP1Wins().get(3).size();
+                player1GrassWins.setText(String.valueOf(grassWins));
+            }
+        }
+    }
+
+    public void updatePlayer2WinCounter(String element) {
+        switch(element) {
+            case "fire" -> {
+                int fireWins = game.getP2Wins().get(1).size();
+                player2FireWins.setText(String.valueOf(fireWins));
+            }
+            case "water" -> {
+                int waterWins = game.getP2Wins().get(2).size();
+                player2WaterWins.setText(String.valueOf(waterWins));
+            }
+            case "grass" -> {
+                int grassWins = game.getP2Wins().get(3).size();
+                player2GrassWins.setText(String.valueOf(grassWins));
+            }
         }
     }
 
@@ -119,7 +159,7 @@ public class GameSceneController {
         firstCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
-        updateRoundResult();
+        updateRoundResult(selectedCard, AISelectedCard);
         exitOnGameWin();
     }
 
@@ -129,7 +169,7 @@ public class GameSceneController {
         secondCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
-        updateRoundResult();
+        updateRoundResult(selectedCard, AISelectedCard);
         exitOnGameWin();
     }
 
@@ -139,7 +179,7 @@ public class GameSceneController {
         thirdCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
-        updateRoundResult();
+        updateRoundResult(selectedCard, AISelectedCard);
         exitOnGameWin();
     }
 
@@ -149,7 +189,7 @@ public class GameSceneController {
         fourthCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
-        updateRoundResult();
+        updateRoundResult(selectedCard, AISelectedCard);
         exitOnGameWin();
     }
 
@@ -159,7 +199,7 @@ public class GameSceneController {
         fifthCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
-        updateRoundResult();
+        updateRoundResult(selectedCard, AISelectedCard);
         exitOnGameWin();
     }
 }
