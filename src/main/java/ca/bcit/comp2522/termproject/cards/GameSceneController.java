@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.termproject.cards;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,6 +33,8 @@ public class GameSceneController {
     private ImageView AISelectedCardDisplay;
     @FXML
     private ImageView playerSelectedCardDisplay;
+    private FadeTransition AISelectedCardAnimation;
+    private FadeTransition playerSelectedCardAnimation;
 
     // This method is automatically called by the FXML loader
     @FXML
@@ -45,6 +50,8 @@ public class GameSceneController {
         allCardsInHand.addAll(
                 Arrays.asList(firstCardInHand, secondCardInHand, thirdCardInHand, fourthCardInHand, fifthCardInHand));
         updateCardImages();
+        AISelectedCardAnimation = createCardAnimation(AISelectedCardDisplay);
+        playerSelectedCardAnimation = createCardAnimation(playerSelectedCardDisplay);
     }
 
     public void updateCardImages() {
@@ -67,6 +74,18 @@ public class GameSceneController {
         playerSelectedCardDisplay.setImage(player1Card.getImage());
         AISelectedCardDisplay.setVisible(true);
         playerSelectedCardDisplay.setVisible(true);
+        playerSelectedCardAnimation.play();
+        AISelectedCardAnimation.play();
+    }
+
+    public FadeTransition createCardAnimation(ImageView card) {
+        FadeTransition fade = new FadeTransition();
+        fade.setNode(card);
+        fade.setDuration(Duration.seconds(0.5));
+        fade.setInterpolator(Interpolator.LINEAR);
+        fade.setFromValue(0);
+        fade.setToValue(1);
+        return fade;
     }
 
     public void exitOnGameWin() {
