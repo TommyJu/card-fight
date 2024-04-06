@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" styleClass="background" stylesheets="@game_scene.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.bcit.comp2522.termproject.cards.GameSceneController">
    <children>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="39.0" mnemonicParsing="false" onAction="#switchToStartScene" text="Scene2" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="93.0" mnemonicParsing="false" onAction="#switchToStartScene" text="Scene2" />
       <ImageView fx:id="thirdCardInHand" fitHeight="253.0" fitWidth="181.0" layoutX="407.0" layoutY="531.0" onMouseClicked="#thirdCardOnClick" pickOnBounds="true" preserveRatio="true" styleClass="card">
          <image>
             <Image url="@../../../../../water10.png" />
@@ -41,6 +43,26 @@
       <ImageView fx:id="playerSelectedCardDisplay" fitHeight="269.0" fitWidth="192.0" layoutX="532.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../../../../../fire9.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="player2Name" alignment="CENTER" layoutX="33.0" layoutY="24.0" prefHeight="26.0" prefWidth="181.0" text="Player 2" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="player1Name" alignment="CENTER" layoutX="770.0" layoutY="24.0" prefHeight="26.0" prefWidth="181.0" text="Player 1" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="roundResult" alignment="CENTER" layoutX="367.0" layoutY="24.0" prefHeight="26.0" prefWidth="266.0" text="Select a card to start!" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="196.0" fitWidth="124.0" layoutX="451.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../master_splinter.png" />
          </image>
       </ImageView>
    </children>

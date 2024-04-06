@@ -2,15 +2,13 @@ package ca.bcit.comp2522.termproject.cards;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -19,9 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GameSceneController {
-    private static Stage stage;
     private static Scene scene;
-    private static Parent root;
     private static Game game;
     private static Player player1;
     private static Deck player1Deck;
@@ -30,11 +26,10 @@ public class GameSceneController {
     @FXML
     private ImageView firstCardInHand, secondCardInHand, thirdCardInHand, fourthCardInHand, fifthCardInHand;
     @FXML
-    private ImageView AISelectedCardDisplay;
+    private ImageView AISelectedCardDisplay, playerSelectedCardDisplay;
     @FXML
-    private ImageView playerSelectedCardDisplay;
-    private FadeTransition AISelectedCardAnimation;
-    private FadeTransition playerSelectedCardAnimation;
+    private Label player1Name, player2Name, roundResult;
+    private FadeTransition AISelectedCardAnimation, playerSelectedCardAnimation;
 
     // This method is automatically called by the FXML loader
     @FXML
@@ -46,10 +41,14 @@ public class GameSceneController {
         player1Deck = player1.getDeck();
         player1Hand = player1Deck.getHand();
 
+        player1Name.setText(player1.getName());
+        player2Name.setText(game.getPlayer2().getName());
+
         allCardsInHand = new ArrayList<>();
         allCardsInHand.addAll(
                 Arrays.asList(firstCardInHand, secondCardInHand, thirdCardInHand, fourthCardInHand, fifthCardInHand));
         updateCardImages();
+
         AISelectedCardAnimation = createCardAnimation(AISelectedCardDisplay);
         playerSelectedCardAnimation = createCardAnimation(playerSelectedCardDisplay);
     }
@@ -88,6 +87,16 @@ public class GameSceneController {
         return fade;
     }
 
+    public void updateRoundResult() {
+        if (game.getIsPreviousRoundWon()) {
+            roundResult.setText(player1.getName() + " has won this round!");
+            roundResult.setTextFill(Color.GREEN);
+        } else {
+            roundResult.setText(game.getPlayer2().getName() + " has won this round!");
+            roundResult.setTextFill(Color.RED);
+        }
+    }
+
     public void exitOnGameWin() {
         Player gameWinner = game.determineGameWinner();
         if (gameWinner == null) {
@@ -110,6 +119,7 @@ public class GameSceneController {
         firstCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        updateRoundResult();
         exitOnGameWin();
     }
 
@@ -119,6 +129,7 @@ public class GameSceneController {
         secondCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        updateRoundResult();
         exitOnGameWin();
     }
 
@@ -128,6 +139,7 @@ public class GameSceneController {
         thirdCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        updateRoundResult();
         exitOnGameWin();
     }
 
@@ -137,6 +149,7 @@ public class GameSceneController {
         fourthCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        updateRoundResult();
         exitOnGameWin();
     }
 
@@ -146,6 +159,7 @@ public class GameSceneController {
         fifthCardInHand.setImage(newCard.getImage());
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
         updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        updateRoundResult();
         exitOnGameWin();
     }
 }

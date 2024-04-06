@@ -20,6 +20,7 @@ public class Game {
     public final static int WIN_CONDITION = 3; // Three wins with the same element
     private final Player player1;
     private final AIPlayer AIPlayer;
+    private Boolean isPreviousRoundWon;
 
     private final HashMap<Integer, ArrayList<Card>> P1Wins = new HashMap<>();
     private final HashMap<Integer, ArrayList<Card>> P2Wins = new HashMap<>();
@@ -60,7 +61,7 @@ public class Game {
      */
     public Card playRoundAgainstAI(Card P1card) {
         Card P2card = AIPlayer.pickRandomCard(P1card);
-        determineRound(P1card, P2card);
+        this.isPreviousRoundWon = determineRound(P1card, P2card);
         return P2card;
     }
 
@@ -215,4 +216,8 @@ public class Game {
     public HashMap<Integer, ArrayList<Card>> getP2Wins(){
         return this.P2Wins;
     }
-}
+
+    public Boolean getIsPreviousRoundWon() {
+        return isPreviousRoundWon;
+    }
+} // end of class
