@@ -10,7 +10,9 @@ import java.util.Objects;
 public abstract class Player {
     private String name;
     private Deck deck;
-    private final Map<String, Integer> roundWins;
+    private int gamesPlayed;
+    private int totalWins;
+    private double winRate;
 
     /**
      * Constructs a new player.
@@ -20,8 +22,9 @@ public abstract class Player {
     public Player(String name, Deck deck) {
         this.name = name;
         this.deck = deck;
-        this.roundWins = new HashMap<>();
-        resetRoundWins();
+        this.gamesPlayed = 0;
+        this.totalWins = 0;
+
 
     }
 
@@ -65,42 +68,22 @@ public abstract class Player {
         this.deck = deck;
     }
 
-    /**
-     * Resets the rounds won for each element.
-     */
-    public void resetRoundWins() {
-        this.roundWins.clear();
-        // Create key value pairs for each element
-        for(String element: Card.ALL_ELEMENTS) {
-            this.roundWins.put(element, 0);
-        }
+    public int getGamesPlayed() {
+        return this.gamesPlayed;
+    }
+    public double getWinRate() { return this.winRate; }
+    public void incrementGamesPlayed() {
+        this.gamesPlayed += 1;
+    }
+    public int getTotalWins() {
+        return this.totalWins;
+    }
+    public void incrementTotalWins() {
+        this.totalWins += 1;
+    }
+    public void calculateWinRate() {
+        winRate = ( this.totalWins / (double)this.gamesPlayed * 100);
     }
 
-    /**
-     * Increments the round wins of an element by 1 or creates a new key if not present.
-     * @param element the element type that has won the round
-     */
-    public void incrementRoundWin(String element) {
-        if (this.roundWins.containsKey(element)) {
-            Integer roundWinsForElement = roundWins.get(element);
-            this.roundWins.put(element, ++roundWinsForElement);
-        } else {
-            this.roundWins.put(element, 0);
-        }
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return Objects.equals(name, player.name) &&
-                Objects.equals(deck, player.deck) &&
-                Objects.equals(roundWins, player.roundWins);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, deck, roundWins);
-    }
 }

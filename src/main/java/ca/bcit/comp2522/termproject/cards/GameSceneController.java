@@ -167,10 +167,17 @@ public class GameSceneController {
         if (gameWinner == null) { return; }
         else if (gameWinner.equals(player1)) {
 //            setGameEndScreenText(player1Name + " wins! Player stats have been updated.");
+            player1.incrementTotalWins();
+            player1.incrementGamesPlayed();
+            player1.calculateWinRate();
+            player1Deck.shuffle();
             switchToGameEndScene();
         }
         else {
 //            setGameEndScreenText("You lose! Player stats have been updated.");
+            player1.incrementGamesPlayed();
+            player1.calculateWinRate();
+            player1Deck.shuffle();
             switchToGameEndScene();
         }
     }

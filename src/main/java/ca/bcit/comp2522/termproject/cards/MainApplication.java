@@ -12,7 +12,8 @@ import java.nio.file.Path;
 
 
 public class MainApplication extends Application {
-    MediaPlayer mediaPlayer;
+    public static HumanPlayer player1;
+    public static MediaPlayer mediaPlayer;
     public void music() {
         String musicFileName = "sound-tracks/background_music.mp3";
         Media backgroundMusic = new Media (Path.of(musicFileName).toUri().toString());
@@ -24,7 +25,8 @@ public class MainApplication extends Application {
     @Override
     public void start(final Stage primaryStage) {
         music();
-
+        // Initialize the player here.
+        player1 = new HumanPlayer("Chris", new Deck());
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
             Parent root = loader.load();

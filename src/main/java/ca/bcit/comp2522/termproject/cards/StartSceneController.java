@@ -7,6 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -16,15 +19,24 @@ import java.io.IOException;
 public class StartSceneController {
     public static Stage stage;
     private static Scene scene;
-    public static Player player1;
+    public static HumanPlayer player1;
     @FXML
     private ImageView sailBoat;
+    @FXML
+    private Label playerName, gamesPlayed, gamesWon, winRate;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private Button nameSubmit;
 
     // This method is automatically called by the FXML loader
     public void initialize() {
-        Deck deck = new Deck();
-        player1 = new HumanPlayer("Chris", deck);
         playSailBoatAnimation();
+        player1 = MainApplication.player1;
+        playerName.setText(player1.getName());
+        gamesPlayed.setText(String.format("Games Played: %d", player1.getGamesPlayed()));
+        gamesWon.setText(String.format("Games Won: %d", player1.getTotalWins()));
+        winRate.setText(String.format("Win Rate: %%%.1f", player1.getWinRate()));
     }
 
     public void switchToGameScene(ActionEvent event) throws IOException {
@@ -42,5 +54,14 @@ public class StartSceneController {
         translate.setCycleCount(TranslateTransition.INDEFINITE);
         translate.setByX(1300);
         translate.play();
+    }
+
+    public void submit(ActionEvent event) {
+        String nameInput = nameField.getText().strip();
+        if (nameInput.isBlank() || nameInput.length() > 20) {
+            return;
+        }
+        playerName.setText(nameInput);
+        player1.setName(nameInput);
     }
 }

@@ -6,21 +6,4 @@ public class HumanPlayer extends Player {
     public HumanPlayer(String name, Deck deck) {
         super(name, deck);
     }
-    public int getGamesPlayed() {
-        return this.gamesPlayed;
-    }
-    public void incrementGamesPlayed() {
-        this.gamesPlayed += 1;
-    }
-    public int getTotalWins() {
-        return this.totalWins;
-    }
-    public void incrementTotalWins() {
-        this.totalWins += 1;
-    }
-    public float calculateWinRate() {
-        float winRate;
-        winRate = this.gamesPlayed / this.totalWins;
-        return winRate;
-    }
 }
