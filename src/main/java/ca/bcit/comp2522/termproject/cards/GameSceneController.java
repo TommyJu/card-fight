@@ -87,10 +87,10 @@ public class GameSceneController {
     }
 
     public void updateSelectedCardsDisplay(Card player1Card, Card AICard) {
-        AISelectedCardDisplay.setImage(AICard.getImage());
-        playerSelectedCardDisplay.setImage(player1Card.getImage());
         AISelectedCardDisplay.setVisible(true);
         playerSelectedCardDisplay.setVisible(true);
+        AISelectedCardDisplay.setImage(AICard.getImage());
+        playerSelectedCardDisplay.setImage(player1Card.getImage());
         playerSelectedCardAnimation.play();
         AISelectedCardAnimation.play();
     }
@@ -200,51 +200,52 @@ public class GameSceneController {
     // Card on click methods
     public void firstCardOnClick() {
         Card selectedCard = player1Hand.get(0);
-        Card newCard = player1Deck.dealNewCard(selectedCard);
-        firstCardInHand.setImage(newCard.getImage());
+        // may have to change this deal method, may not work with duplicates
+        Card newCard = player1Deck.dealNewCard(selectedCard, 0);
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
-        updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        firstCardInHand.setImage(newCard.getImage());
         updateRoundResult(selectedCard, AISelectedCard);
+        updateSelectedCardsDisplay(selectedCard, AISelectedCard);
         exitOnGameWin();
     }
 
     public void secondCardOnClick() {
         Card selectedCard = player1Hand.get(1);
-        Card newCard = player1Deck.dealNewCard(selectedCard);
-        secondCardInHand.setImage(newCard.getImage());
+        Card newCard = player1Deck.dealNewCard(selectedCard, 1);
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
-        updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        secondCardInHand.setImage(newCard.getImage());
         updateRoundResult(selectedCard, AISelectedCard);
+        updateSelectedCardsDisplay(selectedCard, AISelectedCard);
         exitOnGameWin();
     }
 
     public void thirdCardOnClick() {
         Card selectedCard = player1Hand.get(2);
-        Card newCard = player1Deck.dealNewCard(selectedCard);
-        thirdCardInHand.setImage(newCard.getImage());
+        Card newCard = player1Deck.dealNewCard(selectedCard, 2);
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
-        updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        thirdCardInHand.setImage(newCard.getImage());
         updateRoundResult(selectedCard, AISelectedCard);
+        updateSelectedCardsDisplay(selectedCard, AISelectedCard);
         exitOnGameWin();
     }
 
     public void fourthCardOnClick() {
         Card selectedCard = player1Hand.get(3);
-        Card newCard = player1Deck.dealNewCard(selectedCard);
-        fourthCardInHand.setImage(newCard.getImage());
+        Card newCard = player1Deck.dealNewCard(selectedCard, 3);
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
-        updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        fourthCardInHand.setImage(newCard.getImage());
         updateRoundResult(selectedCard, AISelectedCard);
+        updateSelectedCardsDisplay(selectedCard, AISelectedCard);
         exitOnGameWin();
     }
 
     public void fifthCardOnClick() {
         Card selectedCard = player1Hand.get(4);
-        Card newCard = player1Deck.dealNewCard(selectedCard);
-        fifthCardInHand.setImage(newCard.getImage());
+        Card newCard = player1Deck.dealNewCard(selectedCard, 4);
         Card AISelectedCard = game.playRoundAgainstAI(selectedCard);
-        updateSelectedCardsDisplay(selectedCard, AISelectedCard);
+        fifthCardInHand.setImage(newCard.getImage());
         updateRoundResult(selectedCard, AISelectedCard);
+        updateSelectedCardsDisplay(selectedCard, AISelectedCard);
         exitOnGameWin();
     }
 }

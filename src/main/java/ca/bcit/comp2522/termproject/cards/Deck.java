@@ -100,11 +100,7 @@ public class Deck {
      * @param oldCard the Card in hand to replace
      * @return The new card that has been dealt
      */
-    public Card dealNewCard(final Card oldCard) {
-        // current cards in the player's hand
-        List<Card> cardsInHand = this.getHand();
-        int oldCardIndex = cardsInHand.indexOf((oldCard));
-
+    public Card dealNewCard(final Card oldCard, int oldCardIndex) {
         // Take card from reserve
         Card newCard = reserve.getFirst();
         reserve.remove(newCard);
@@ -128,7 +124,7 @@ public class Deck {
         // Replace cards in hand
         for (int i = 0; i < MAX_CARDS_IN_HAND; i++) {
             Card cardInHand = getHand().get(i);
-            dealNewCard(cardInHand);
+            dealNewCard(cardInHand, i);
         }
     }
 

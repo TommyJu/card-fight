@@ -18,12 +18,12 @@
             <DropShadow />
          </effect></Label>
       <Button fx:id="okButton" layoutX="415.0" layoutY="501.0" mnemonicParsing="false" onAction="#switchToStartScene" text="Return to Menu" />
-      <ImageView fx:id="finalPlayerCard" fitHeight="281.0" fitWidth="213.0" layoutX="538.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="finalPlayerCard" fitHeight="281.0" fitWidth="213.0" layoutX="523.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../grass6.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="finalAICard" fitHeight="269.0" fitWidth="192.0" layoutX="272.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="finalAICard" fitHeight="269.0" fitWidth="192.0" layoutX="282.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../grass6.png" />
          </image>
