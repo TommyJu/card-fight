@@ -2,6 +2,7 @@ package ca.bcit.comp2522.termproject.cards;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -106,7 +107,7 @@ public class GameSceneController {
     public void updateRoundResult(Card player1Card, Card player2Card) {
         if (game.getIsPreviousRoundWon()) {
             roundResult.setText(player1.getName() + " has won this round!");
-            roundResult.setTextFill(Color.GREEN);
+            roundResult.setTextFill(Color.LIGHTGREEN);
             String elementToUpdate = player1Card.getElement();
             updatePlayer1WinCounter(elementToUpdate);
         } else {

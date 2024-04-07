@@ -2,23 +2,23 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Reflection?>
-<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" styleClass="background" stylesheets="@game_scene.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.bcit.comp2522.termproject.cards.GameSceneController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="39.0" layoutX="234.0" layoutY="113.0" opacity="0.37" stroke="BLACK" strokeType="INSIDE" width="527.0" />
       <ImageView fitHeight="196.0" fitWidth="124.0" layoutX="451.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../master_splinter.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="292.0" mnemonicParsing="false" onAction="#switchToStartScene" text="Scene2" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="424.0" mnemonicParsing="false" onAction="#switchToStartScene" text="Scene2" />
       <ImageView fx:id="thirdCardInHand" fitHeight="253.0" fitWidth="181.0" layoutX="403.0" layoutY="507.0" onMouseClicked="#thirdCardOnClick" pickOnBounds="true" preserveRatio="true" styleClass="card">
          <image>
             <Image url="@../../../../../water10.png" />
@@ -79,61 +79,25 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="roundResult" alignment="CENTER" layoutX="302.0" layoutY="92.0" prefHeight="25.0" prefWidth="423.0" text="You must win three rounds with the same element." textAlignment="CENTER" textFill="#ebebeb" underline="true">
+      <Label fx:id="roundResult" alignment="CENTER" layoutX="283.0" layoutY="117.0" prefHeight="25.0" prefWidth="423.0" text="You must win three rounds with the same element." textAlignment="CENTER" textFill="#ebebeb" underline="true">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
-         <effect>
-            <DropShadow />
-         </effect>
       </Label>
-      <ImageView fitHeight="54.0" fitWidth="52.0" layoutX="33.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="54.0" fitWidth="52.0" layoutX="33.0" layoutY="78.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../fire.png" />
          </image>
-         <effect>
-            <SepiaTone />
-         </effect>
       </ImageView>
-      <ImageView fitHeight="52.0" fitWidth="60.0" layoutX="113.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="52.0" fitWidth="60.0" layoutX="34.0" layoutY="142.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../water.png" />
          </image>
-         <effect>
-            <SepiaTone />
-         </effect>
       </ImageView>
-      <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="192.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="35.0" layoutY="206.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../grass.png" />
          </image>
-         <effect>
-            <SepiaTone />
-         </effect>
-      </ImageView>
-      <ImageView fitHeight="54.0" fitWidth="52.0" layoutX="755.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../fire.png" />
-         </image>
-         <effect>
-            <SepiaTone />
-         </effect>
-      </ImageView>
-      <ImageView fitHeight="52.0" fitWidth="60.0" layoutX="835.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../water.png" />
-         </image>
-         <effect>
-            <SepiaTone />
-         </effect>
-      </ImageView>
-      <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="914.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../grass.png" />
-         </image>
-         <effect>
-            <SepiaTone />
-         </effect>
       </ImageView>
       <Label fx:id="player2FireWins" layoutX="49.0" layoutY="85.0" text="0">
          <font>
@@ -143,7 +107,7 @@
             <Glow level="0.5" />
          </effect>
       </Label>
-      <Label fx:id="player1GrassWins" layoutX="930.0" layoutY="85.0" text="0">
+      <Label fx:id="player2GrassWins" layoutX="51.0" layoutY="213.0" text="0">
          <font>
             <Font size="32.0" />
          </font>
@@ -151,7 +115,7 @@
             <Glow level="0.5" />
          </effect>
       </Label>
-      <Label fx:id="player1WaterWins" layoutX="851.0" layoutY="85.0" text="0">
+      <Label fx:id="player2WaterWins" layoutX="50.0" layoutY="149.0" text="0">
          <font>
             <Font size="32.0" />
          </font>
@@ -159,7 +123,22 @@
             <Glow level="0.5" />
          </effect>
       </Label>
-      <Label fx:id="player1FireWins" layoutX="771.0" layoutY="85.0" text="0">
+      <ImageView fitHeight="54.0" fitWidth="52.0" layoutX="910.0" layoutY="78.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../fire.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="52.0" fitWidth="60.0" layoutX="911.0" layoutY="142.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../water.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="912.0" layoutY="206.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../grass.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="player1FireWins" layoutX="926.0" layoutY="85.0" text="0">
          <font>
             <Font size="32.0" />
          </font>
@@ -167,7 +146,7 @@
             <Glow level="0.5" />
          </effect>
       </Label>
-      <Label fx:id="player2GrassWins" layoutX="208.0" layoutY="85.0" text="0">
+      <Label fx:id="player1GrassWins" layoutX="928.0" layoutY="213.0" text="0">
          <font>
             <Font size="32.0" />
          </font>
@@ -175,7 +154,7 @@
             <Glow level="0.5" />
          </effect>
       </Label>
-      <Label fx:id="player2WaterWins" layoutX="129.0" layoutY="85.0" text="0">
+      <Label fx:id="player1WaterWins" layoutX="927.0" layoutY="149.0" text="0">
          <font>
             <Font size="32.0" />
          </font>
