@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +17,8 @@ public class PlayerWinController {
     Label gameResult;
     @FXML
     Button okButton;
+    @FXML
+    ImageView finalPlayerCard, finalAICard;
 
     public void initialize() {
         Game game = GameSceneController.game;
@@ -26,6 +29,8 @@ public class PlayerWinController {
         else {
             gameResult.setText("You lose! Player stats have been updated.");
         }
+        finalAICard.setImage(GameSceneController.game.getAISelectedCard().getImage());
+        finalPlayerCard.setImage(GameSceneController.game.getPlayer1SelectedCard().getImage());
     }
     public void switchToStartScene() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));

@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -30,7 +31,7 @@ public class GameSceneController {
     @FXML
     private ImageView firstCardInHand, secondCardInHand, thirdCardInHand, fourthCardInHand, fifthCardInHand;
     @FXML
-    private ImageView AISelectedCardDisplay, playerSelectedCardDisplay;
+    public ImageView AISelectedCardDisplay, playerSelectedCardDisplay;
     @FXML
     private Label player1Name, player2Name, roundResult;
     @FXML

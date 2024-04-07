@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.termproject.cards;
 
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ public class Game {
      * Determines how many wins with an element are required to win the game.
      */
     public final static int WIN_CONDITION = 3; // Three wins with the same element
+    private Card player1SelectedCard;
+    private Card AISelectedCard;
     private final Player player1;
     private final AIPlayer AIPlayer;
     private Boolean isPreviousRoundWon;
@@ -34,6 +37,13 @@ public class Game {
             P1Wins.put(i, new ArrayList<>());
             P2Wins.put(i, new ArrayList<>());
         }
+    }
+
+    public Card getAISelectedCard() {
+        return this.AISelectedCard;
+    }
+    public Card getPlayer1SelectedCard() {
+        return this.player1SelectedCard;
     }
 
     /**
@@ -60,7 +70,9 @@ public class Game {
      * @return the card that the AI has selected
      */
     public Card playRoundAgainstAI(Card P1card) {
+        player1SelectedCard = P1card;
         Card P2card = AIPlayer.pickRandomCard(P1card);
+        AISelectedCard = P2card;
         this.isPreviousRoundWon = determineRound(P1card, P2card);
         return P2card;
     }
