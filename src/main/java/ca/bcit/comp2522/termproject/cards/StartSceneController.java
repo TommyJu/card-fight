@@ -56,9 +56,15 @@ public class StartSceneController {
         translate.play();
     }
 
-    public void submit(ActionEvent event) {
+    public void submit() {
+        String defaultName = "World's Longest Name";
         String nameInput = nameField.getText().strip();
-        if (nameInput.isBlank() || nameInput.length() > 20) {
+        if (nameInput.isBlank()) {
+            return;
+        }
+        if (nameInput.length() > 20) {
+            playerName.setText(defaultName);
+            player1.setName(defaultName);
             return;
         }
         playerName.setText(nameInput);

@@ -39,8 +39,8 @@
       <Label fx:id="gamesWon" layoutX="831.0" layoutY="102.0" prefHeight="17.0" prefWidth="143.0" text="Games Won:" textFill="WHITE" />
       <Label fx:id="winRate" layoutX="831.0" layoutY="126.0" prefHeight="17.0" prefWidth="142.0" text="Win Rate:" textFill="WHITE" />
       <Label fx:id="playerName" layoutX="831.0" layoutY="33.0" prefHeight="17.0" prefWidth="141.0" text="Name" textFill="WHITE" />
-      <TextField fx:id="nameField" layoutX="636.0" layoutY="28.0" promptText="Enter a new name" />
-      <Button fx:id="nameSubmit" layoutX="672.0" layoutY="67.0" mnemonicParsing="false" onAction="#submit" prefHeight="20.0" prefWidth="82.0" text="Change Name">
+      <TextField fx:id="nameField" layoutX="822.0" layoutY="166.0" promptText="(Max: 20 characters)" />
+      <Button fx:id="nameSubmit" layoutX="861.0" layoutY="199.0" mnemonicParsing="false" onAction="#submit" prefHeight="20.0" prefWidth="82.0" text="Change Name">
          <font>
             <Font size="11.0" />
          </font>
