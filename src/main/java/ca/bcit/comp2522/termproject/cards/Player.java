@@ -2,6 +2,7 @@ package ca.bcit.comp2522.termproject.cards;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Represents an abstract player.
@@ -86,5 +87,20 @@ public abstract class Player {
         } else {
             this.roundWins.put(element, 0);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name) &&
+                Objects.equals(deck, player.deck) &&
+                Objects.equals(roundWins, player.roundWins);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, deck, roundWins);
     }
 }

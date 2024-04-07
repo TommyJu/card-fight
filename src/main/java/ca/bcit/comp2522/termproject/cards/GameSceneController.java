@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -17,8 +19,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GameSceneController {
+    private static Parent root;
     private static Scene scene;
-    private static Game game;
+    public static Game game;
     private static Player player1;
     private static Deck player1Deck;
     private static List<Card> player1Hand;
@@ -68,6 +71,17 @@ public class GameSceneController {
         scene = new Scene(root);
         StartSceneController.stage.setScene(scene);
         StartSceneController.stage.show();
+    }
+
+    public void switchToGameEndScene() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("playerWin.fxml"));
+            scene = new Scene(root);
+            StartSceneController.stage.setScene(scene);
+            StartSceneController.stage.show();
+        } catch (IOException e) {
+            System.err.println("Failed to load FXML for game end screen.");
+        }
     }
 
     public void updateSelectedCardsDisplay(Card player1Card, Card AICard) {
@@ -137,20 +151,42 @@ public class GameSceneController {
         }
     }
 
+//    public void setGameEndScreenText(String message) {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("playerWin.fxml"));
+//        try {
+//            root = loader.load();
+//        } catch (IOException e) {
+//            System.err.println("Failed to load the player win FXML file.");
+//        }
+//        PlayerWinController playerWinController = loader.getController();
+//        playerWinController.gameResult.setText(message);
+//    }
     public void exitOnGameWin() {
         Player gameWinner = game.determineGameWinner();
-        if (gameWinner == null) {
-            return;
+        if (gameWinner == null) { return; }
+        else if (gameWinner.equals(player1)) {
+//            setGameEndScreenText(player1Name + " wins! Player stats have been updated.");
+            switchToGameEndScene();
         }
         else {
-            try {
-                switchToStartScene();
-            } catch (IOException e) {
-                System.err.println("Failed to switch from game scene to start scene.");
-            }
-
+//            setGameEndScreenText("You lose! Player stats have been updated.");
+            switchToGameEndScene();
         }
     }
+
+//    public void exitOnGameWin() {
+//        Player gameWinner = game.determineGameWinner();
+//        if (gameWinner.equals(player1)) {
+//            try {
+//                switchToStartScene();
+//            } catch (IOException e) {
+//                System.err.println("Failed to switch from game scene to start scene.");
+//            }
+//        }
+//        else {
+//
+//        }
+//    }
 
     // Card on click methods
     public void firstCardOnClick() {
