@@ -44,9 +44,11 @@ public class MainApplication extends Application {
             return objectInputStream.readObject();
         } catch (IOException e) {
             System.err.println("Failed to deserialize player.");
+            deleteSaveDirectory(); // Delete the corrupt file on deserialization failure
             return null;
         } catch (ClassNotFoundException e) {
             System.err.println("Deserialization failed, no class found.");
+            deleteSaveDirectory();
             return null;
         }
     }
@@ -59,6 +61,15 @@ public class MainApplication extends Application {
         }
         try {
             Files.createDirectory(directoryPath);
+        } catch (IOException e) {
+            System.err.println("Failed to create a directory.");
+        }
+    }
+
+    public static void deleteSaveDirectory() {
+        Path directoryPath = Path.of(PLAYER_SAVE_FILEPATH);
+        try {
+            Files.delete(directoryPath);
         } catch (IOException e) {
             System.err.println("Failed to create a directory.");
         }

@@ -73,5 +73,9 @@ public class StartSceneController {
         }
         playerName.setText(nameInput);
         player1.setName(nameInput);
+        // Save player changes
+        MainApplication.serializeObject(player1,
+                MainApplication.PLAYER_SAVE_FILEPATH,
+                MainApplication.PLAYER_SAVE_FILENAME);
     }
 }
