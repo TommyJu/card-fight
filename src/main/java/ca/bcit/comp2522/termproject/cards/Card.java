@@ -44,7 +44,7 @@ public class Card implements Serializable {
     private final String element;
     private final int attack;
     private final String imageFile;
-    private final Image image;
+//    private final Image image;
 
     /**
      * Constructs a game card.
@@ -65,7 +65,7 @@ public class Card implements Serializable {
         }
 
         this.imageFile = element + attack + ".png";
-        this.image = new Image(this.imageFile);
+//        this.image = new Image(this.imageFile);
     }
 
     /**
@@ -97,7 +97,7 @@ public class Card implements Serializable {
      * @return a String representing the card image file
      */
     public Image getImage() {
-        return this.image;
+        return new Image(this.imageFile);
     }
 
     @Override
@@ -110,6 +110,6 @@ public class Card implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(element, attack, imageFile, image);
+        return Objects.hash(element, attack, imageFile);
     }
 } // end of class
