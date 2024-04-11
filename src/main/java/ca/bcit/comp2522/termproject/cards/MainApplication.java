@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 
 
@@ -20,6 +20,29 @@ public class MainApplication extends Application {
         mediaPlayer = new MediaPlayer(backgroundMusic);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
+    }
+
+    public static void serializeObject(final Object object, final String filePath, final String fileName) {
+        try (ObjectOutputStream objectOutputStream =
+                     new ObjectOutputStream(new FileOutputStream(filePath + "/" + fileName + ".ser"))) {
+            objectOutputStream.writeObject(object);
+            System.out.println("Serialization successful.");
+        } catch (IOException e) {
+            System.err.println("Failed to serialize object.");
+        }
+    }
+
+    public static Object deserializeObject(final String filePath, final String fileName) {
+        try (ObjectInputStream objectInputStream =
+                     new ObjectInputStream(new FileInputStream(filePath + "/" + fileName + ".ser"))) {
+            return objectInputStream.readObject();
+        } catch (IOException e) {
+            System.err.println("Failed to deserialize player.");
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.err.println("Deserialization failed, no class found.");
+            return null;
+        }
     }
 
     @Override
