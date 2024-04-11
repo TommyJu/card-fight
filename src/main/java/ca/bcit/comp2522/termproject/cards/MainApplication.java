@@ -7,11 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 
 public class MainApplication extends Application {
+    public static final String PLAYER_SAVE_DIRECTORY = "player-save";
     public static HumanPlayer player1;
     public static MediaPlayer mediaPlayer;
     public void music() {
@@ -20,6 +22,42 @@ public class MainApplication extends Application {
         mediaPlayer = new MediaPlayer(backgroundMusic);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
+    }
+
+    public static void serializeObject(final Object object, final String filePath, final String fileName) {
+        try (ObjectOutputStream objectOutputStream =
+                     new ObjectOutputStream(new FileOutputStream(filePath + "/" + fileName + ".ser"))) {
+            objectOutputStream.writeObject(object);
+            System.out.println("Serialization successful.");
+        } catch (IOException e) {
+            System.err.println("Failed to serialize object.");
+        }
+    }
+
+    public static Object deserializeObject(final String filePath, final String fileName) {
+        try (ObjectInputStream objectInputStream =
+                     new ObjectInputStream(new FileInputStream(filePath + "/" + fileName + ".ser"))) {
+            return objectInputStream.readObject();
+        } catch (IOException e) {
+            System.err.println("Failed to deserialize player.");
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.err.println("Deserialization failed, no class found.");
+            return null;
+        }
+    }
+
+    public static void createSaveDirectory() {
+        Path directoryPath = Path.of(PLAYER_SAVE_DIRECTORY);
+        if (Files.exists(directoryPath)) {
+            System.err.println("This directory already exists.");
+            return;
+        }
+        try {
+            Files.createDirectory(directoryPath);
+        } catch (IOException e) {
+            System.err.println("Failed to create a directory.");
+        }
     }
 
     @Override
