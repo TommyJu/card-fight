@@ -2,6 +2,7 @@ package ca.bcit.comp2522.termproject.cards;
 
 import javafx.scene.image.Image;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,7 +12,7 @@ import java.util.Objects;
  * @author Tommy Ju
  * @version 2024
  */
-public class Card {
+public class Card implements Serializable {
     /**
      * Represents the width of the card's image
      */
@@ -43,7 +44,7 @@ public class Card {
     private final String element;
     private final int attack;
     private final String imageFile;
-    private final Image image;
+//    private final Image image;
 
     /**
      * Constructs a game card.
@@ -64,7 +65,7 @@ public class Card {
         }
 
         this.imageFile = element + attack + ".png";
-        this.image = new Image(this.imageFile);
+//        this.image = new Image(this.imageFile);
     }
 
     /**
@@ -96,7 +97,7 @@ public class Card {
      * @return a String representing the card image file
      */
     public Image getImage() {
-        return this.image;
+        return new Image(this.imageFile);
     }
 
     @Override
@@ -109,6 +110,6 @@ public class Card {
 
     @Override
     public int hashCode() {
-        return Objects.hash(element, attack, imageFile, image);
+        return Objects.hash(element, attack, imageFile);
     }
 } // end of class

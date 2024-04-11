@@ -13,8 +13,9 @@ import java.nio.file.Path;
 
 
 public class MainApplication extends Application {
-    public static final String PLAYER_SAVE_DIRECTORY = "player-save";
-    public static HumanPlayer player1;
+    public static final String PLAYER_SAVE_FILEPATH = "player-save";
+    public static final String PLAYER_SAVE_FILENAME = "player";
+    public static Player player1;
     public static MediaPlayer mediaPlayer;
     public void music() {
         String musicFileName = "sound-tracks/background_music.mp3";
@@ -25,12 +26,15 @@ public class MainApplication extends Application {
     }
 
     public static void serializeObject(final Object object, final String filePath, final String fileName) {
+        // Existing files will be overwritten, not appended to
         try (ObjectOutputStream objectOutputStream =
-                     new ObjectOutputStream(new FileOutputStream(filePath + "/" + fileName + ".ser"))) {
+                     new ObjectOutputStream(
+                             new FileOutputStream(filePath + "/" + fileName + ".ser", false))) {
             objectOutputStream.writeObject(object);
             System.out.println("Serialization successful.");
         } catch (IOException e) {
             System.err.println("Failed to serialize object.");
+            e.printStackTrace();
         }
     }
 
@@ -48,7 +52,7 @@ public class MainApplication extends Application {
     }
 
     public static void createSaveDirectory() {
-        Path directoryPath = Path.of(PLAYER_SAVE_DIRECTORY);
+        Path directoryPath = Path.of(PLAYER_SAVE_FILEPATH);
         if (Files.exists(directoryPath)) {
             System.err.println("This directory already exists.");
             return;
@@ -60,11 +64,21 @@ public class MainApplication extends Application {
         }
     }
 
+    public static boolean isPlayerSaved() {
+        return Files.exists(Path.of(PLAYER_SAVE_FILEPATH + "/" + PLAYER_SAVE_FILENAME + ".ser"));
+    }
+
     @Override
     public void start(final Stage primaryStage) {
         music();
-        // Initialize the player here.
-        player1 = new HumanPlayer("Chris", new Deck());
+        if (isPlayerSaved()) {
+            // Cast deserialized Object to Player
+            player1 = (Player)deserializeObject(PLAYER_SAVE_FILEPATH, PLAYER_SAVE_FILENAME);
+        } else { // Create a new player and save directory
+            player1 = new HumanPlayer("Chris", new Deck());
+            createSaveDirectory();
+        }
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
             Parent root = loader.load();

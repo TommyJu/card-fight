@@ -19,7 +19,7 @@ import java.io.IOException;
 public class StartSceneController {
     public static Stage stage;
     private static Scene scene;
-    public static HumanPlayer player1;
+    public static Player player1;
     @FXML
     private ImageView sailBoat;
     @FXML
@@ -32,7 +32,11 @@ public class StartSceneController {
     // This method is automatically called by the FXML loader
     public void initialize() {
         playSailBoatAnimation();
+        // Save the player every time we return initialize the start menu
         player1 = MainApplication.player1;
+        MainApplication.serializeObject(player1,
+                MainApplication.PLAYER_SAVE_FILEPATH,
+                MainApplication.PLAYER_SAVE_FILENAME);
         playerName.setText(player1.getName());
         gamesPlayed.setText(String.format("Games Played: %d", player1.getGamesPlayed()));
         gamesWon.setText(String.format("Games Won: %d", player1.getTotalWins()));

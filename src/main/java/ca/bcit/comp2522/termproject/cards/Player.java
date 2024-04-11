@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.termproject.cards;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -7,7 +8,7 @@ import java.util.Objects;
 /**
  * Represents an abstract player.
  */
-public abstract class Player {
+public abstract class Player implements Serializable {
     private String name;
     private Deck deck;
     private int gamesPlayed;
