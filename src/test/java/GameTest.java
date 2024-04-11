@@ -36,9 +36,20 @@ public class GameTest {
         grass1 = new Card("grass", 1);
     }
     @Test
-    public void getsCorrectElement() {
-        assertEquals(1, testGame.getCardElementValue(fire1));
+    public void getsCorrectElementFire() {
+        assertEquals(1, testGame.getCardElementValue(fire10));
     }
     @Test
+    public void getsCorrectElementGrass() {
+        assertEquals(3, testGame.getCardElementValue(grass10));
+    }
+    @Test
+    public void getsCorrectElementWater() {
+        assertEquals(2, testGame.getCardElementValue(water10));
+    }
+
+    @Test
     public void getPlayer1test() {assertEquals(testGame.getPlayer1(), testPlayer);}
+
+
 }
