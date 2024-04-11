@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -13,7 +14,7 @@ import java.util.*;
  * @author Tommy Ju
  * @version 2024
  */
-public class Deck {
+public class Deck implements Serializable {
     /**
      * The maximum number of cards in a deck
      */

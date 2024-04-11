@@ -2,6 +2,7 @@ package ca.bcit.comp2522.termproject.cards;
 
 import javafx.scene.image.Image;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,7 +12,7 @@ import java.util.Objects;
  * @author Tommy Ju
  * @version 2024
  */
-public class Card {
+public class Card implements Serializable {
     /**
      * Represents the width of the card's image
      */
