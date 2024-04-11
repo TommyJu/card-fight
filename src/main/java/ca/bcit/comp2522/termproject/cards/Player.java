@@ -85,5 +85,27 @@ public abstract class Player {
         winRate = ( this.totalWins / (double)this.gamesPlayed * 100);
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", deck=" + deck +
+                ", gamesPlayed=" + gamesPlayed +
+                ", totalWins=" + totalWins +
+                ", winRate=" + winRate +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Player player = (Player) object;
+        return gamesPlayed == player.gamesPlayed && totalWins == player.totalWins && Double.compare(winRate, player.winRate) == 0 && Objects.equals(name, player.name) && Objects.equals(deck, player.deck);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, deck, gamesPlayed, totalWins, winRate);
+    }
 }
