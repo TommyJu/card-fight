@@ -31,10 +31,8 @@ public class MainApplication extends Application {
                      new ObjectOutputStream(
                              new FileOutputStream(filePath + "/" + fileName + ".ser", false))) {
             objectOutputStream.writeObject(object);
-            System.out.println("Serialization successful.");
         } catch (IOException e) {
             System.err.println("Failed to serialize object.");
-            e.printStackTrace();
         }
     }
 

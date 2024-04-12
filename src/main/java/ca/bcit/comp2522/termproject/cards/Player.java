@@ -1,12 +1,13 @@
 package ca.bcit.comp2522.termproject.cards;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
  * Represents an abstract player.
+ *
+ * @author Tommy Ju
+ * @version 2024
  */
 public abstract class Player implements Serializable {
     private String name;
@@ -61,19 +62,45 @@ public abstract class Player implements Serializable {
         this.deck = deck;
     }
 
+    /**
+     * Gets the total games played.
+     * @return an int representing games played
+     */
     public int getGamesPlayed() {
         return this.gamesPlayed;
     }
+
+    /**
+     * Gets the player's win rate.
+     * @return a double representing the win rate
+     */
     public double getWinRate() { return this.winRate; }
-    public void incrementGamesPlayed() {
-        this.gamesPlayed += 1;
-    }
+
+    /**
+     * Gets the player's total wins.
+     * @return an int representing total wins
+     */
     public int getTotalWins() {
         return this.totalWins;
     }
+
+    /**
+     * Increments the number of games played.
+     */
+    public void incrementGamesPlayed() {
+        this.gamesPlayed += 1;
+    }
+
+    /**
+     * Increments the total wins.
+     */
     public void incrementTotalWins() {
         this.totalWins += 1;
     }
+
+    /**
+     * Calculates and updates the player's win rate.
+     */
     public void calculateWinRate() {
         winRate = ( this.totalWins / (double)this.gamesPlayed * 100);
     }
@@ -101,4 +128,4 @@ public abstract class Player implements Serializable {
     public int hashCode() {
         return Objects.hash(name, deck, gamesPlayed, totalWins, winRate);
     }
-}
+} // end of class

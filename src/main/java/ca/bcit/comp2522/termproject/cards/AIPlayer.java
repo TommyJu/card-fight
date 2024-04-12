@@ -6,7 +6,6 @@ public class AIPlayer extends Player {
     public AIPlayer(String name) {
         super(name, null); // For now, a deck is not needed as a random card is generated
     }
-
     /**
      * Generates a random card that is different from the user's choice
      * @param userSelectedCard the card that the user has selected
