@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.effect.Glow;
 import javafx.scene.effect.SepiaTone;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class DeckBuildSceneController {
     private static Scene scene;
     private static List<Card> newDeck;
     private static int currentCardIndex;
+    private static int totalAttack;
     @FXML
     Button saveButton, backButton, previousCard, nextCard;
     @FXML
@@ -59,6 +61,7 @@ public class DeckBuildSceneController {
                 cardAttack1, cardAttack2, cardAttack3, cardAttack4, cardAttack5, cardAttack6, cardAttack7, cardAttack8,
                 cardAttack9, cardAttack10, cardAttack11, cardAttack12, cardAttack13, cardAttack14, cardAttack15,
                 cardAttack16, cardAttack17, cardAttack18, cardAttack19, cardAttack20));
+        updateIcons();
     }
     public void switchToStartScene() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
@@ -66,17 +69,22 @@ public class DeckBuildSceneController {
         StartSceneController.stage.setScene(scene);
         StartSceneController.stage.show();
     }
-    public void updateIndexImages() {
-        for(int i = 0; i < Deck.MAX_DECK_SIZE; i++ ){
-            String IconFile = newDeck.get(i).getElement() + ".png";
+    public void updateIcons() {
 
+        for (int i = 0; i < Deck.MAX_DECK_SIZE; i++) {
+            String iconElement = newDeck.get(i).getElement();
+            int iconAttack = newDeck.get(i).getAttack();
+
+            allCardIcons.get(i).setImage(new Image(iconElement + ".png"));
+            allCardAttacks.get(i).setText(String.valueOf(iconAttack));
         }
     }
-    public void updateHighlightedIcon(){
+    public void updateIconHighlight(){
         for (ImageView icon : allCardIcons) {
             icon.setEffect(null);
         }
-        allCardIcons.get(currentCardIndex).setEffect(new SepiaTone());
+        ImageView iconToUpdate = allCardIcons.get(currentCardIndex);
+        iconToUpdate.setEffect(new SepiaTone());
     }
     public void updateCardPreview(){
         Card newCard = newDeck.get(currentCardIndex);
@@ -84,12 +92,43 @@ public class DeckBuildSceneController {
     }
 
     public void previousCard() {
+        if (currentCardIndex == 0) {
+            return;
+        }
         currentCardIndex--;
         updateCardPreview();
+        updateIconHighlight();
     }
 
     public void nextCard() {
+        if (currentCardIndex == Deck.MAX_DECK_SIZE - 1) {
+            return;
+        }
         currentCardIndex++;
         updateCardPreview();
+        updateIconHighlight();
+    }
+
+    public void updateTotalAttack() {
+        int newTotalAttack = 0;
+        for (Card card: newDeck) {
+            newTotalAttack += card.getAttack();
+        }
+        totalAttack = newTotalAttack;
+    }
+
+    public void changeCardToFire() {
+
+    }
+
+    public void changeCardToGrass() {
+        Card cardToChange = newDeck.get(currentCardIndex);
+        cardToChange.setElement("grass");
+        updateCardPreview();
+        updateIcons();
+    }
+
+    public void changeCardToWater() {
+
     }
 }

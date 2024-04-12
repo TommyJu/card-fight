@@ -41,9 +41,9 @@ public class Card implements Serializable {
      * Represents the default attack power.
      */
     public final static int DEFAULT_ATTACK = 5;
-    private final String element;
-    private final int attack;
-    private final String imageFile;
+    private String element;
+    private int attack;
+    private String imageFile;
 //    private final Image image;
 
     /**
@@ -74,6 +74,29 @@ public class Card implements Serializable {
      */
     public String getElement() {
         return this.element;
+    }
+
+    /**
+     * Sets the card element type and updates the card image.
+     * @return a String representing the card element
+     */
+    public void setElement(String element) {
+        if (ALL_ELEMENTS.contains(element)) {
+            this.element = element;
+            // Update image
+            this.imageFile = element + this.attack + ".png";
+        }
+    }
+    /**
+     * Sets the card attack and updates the card image.
+     * @return a String representing the card attack
+     */
+    public void setAttack(int attack) {
+        if (attack <= MAX_ATTACK_VALUE && attack >= MIN_ATTACK_VALUE) {
+            this.attack = attack;
+            // Update image
+            this.imageFile = this.element + attack + ".png";
+        }
     }
 
     /**

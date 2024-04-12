@@ -97,6 +97,7 @@ public class MainApplication extends Application {
             primaryStage.show();
         } catch (IOException e) {
             System.err.println("Failed to open FXML file");
+            e.printStackTrace();
         } catch (Exception e) {
             System.err.println("Error loading starting screen");
         }

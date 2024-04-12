@@ -229,7 +229,7 @@
             <Image url="@../../../../../water.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="selectGrassCard" fitHeight="35.0" fitWidth="28.0" layoutX="330.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="selectGrassCard" fitHeight="35.0" fitWidth="28.0" layoutX="330.0" layoutY="331.0" onMouseClicked="#changeCardToGrass" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../grass.png" />
          </image>
