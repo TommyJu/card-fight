@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,5 +23,11 @@ public class DeckBuildSceneController {
         scene = new Scene(root);
         StartSceneController.stage.setScene(scene);
         StartSceneController.stage.show();
+    }
+    public void updateIndexImages() {
+        for(int i = 0; i < Deck.MAX_DECK_SIZE; i++ ){
+            String IconFile = newDeck.get(i).getElement() + ".png";
+
+        }
     }
 }

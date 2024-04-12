@@ -7,5 +7,9 @@
 /dataSources/
 /dataSources.local.xml
 
+<<<<<<< HEAD
 ### save file ###
 /player-save/
+=======
+/player-save/
+>>>>>>> 5904efbc0ee6e4efb3755cc369e0e313f306ef4a
