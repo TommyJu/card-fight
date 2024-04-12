@@ -11,6 +11,7 @@ import javafx.scene.effect.Glow;
 import javafx.scene.effect.SepiaTone;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -65,12 +66,20 @@ public class DeckBuildSceneController {
         updateIcons();
         updateTotalAttack();
         updateCardPreview();
+        updateAttackSlider();
     }
-    public void switchToStartScene() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
-        scene = new Scene(root);
-        StartSceneController.stage.setScene(scene);
-        StartSceneController.stage.show();
+    public void switchToStartScene() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
+            scene = new Scene(root);
+            StartSceneController.stage.setScene(scene);
+            StartSceneController.stage.show();
+        } catch (IOException e) {
+            System.err.println("Failed to load FXML for game end screen.");
+        }
+    }
+    public void updateAttackSlider() {
+        attackSlider.setValue(newDeck.get(currentCardIndex).getAttack());
     }
     public void updateIcons() {
 
@@ -101,6 +110,7 @@ public class DeckBuildSceneController {
         currentCardIndex--;
         updateCardPreview();
         updateIconHighlight();
+        updateAttackSlider();
     }
 
     public void nextCard() {
@@ -110,6 +120,7 @@ public class DeckBuildSceneController {
         currentCardIndex++;
         updateCardPreview();
         updateIconHighlight();
+        updateAttackSlider();
     }
 
     public void updateTotalAttack() {
@@ -118,11 +129,16 @@ public class DeckBuildSceneController {
             newTotalAttack += card.getAttack();
         }
         totalAttack = newTotalAttack;
-        currentTotalAttack.setText(String.valueOf(newTotalAttack));
-        if (totalAttack == REQUIRED_ATTACK) {
+        currentTotalAttack.setText(String.valueOf(newTotalAttack) + "/" + String.valueOf(REQUIRED_ATTACK));
+        if (totalAttack > 100) {
+            currentTotalAttack.setTextFill(Color.RED);
+        } else {
+            currentTotalAttack.setTextFill(Color.WHITE);
+        }
+        if (totalAttack <= REQUIRED_ATTACK) {
             saveButton.setDisable(false);
         } else {
-            saveButton.setDisable(false);
+            saveButton.setDisable(true);
         }
     }
 
@@ -163,5 +179,10 @@ public class DeckBuildSceneController {
         newDeck.set(currentCardIndex, newCard);
         updateCardPreview();
         updateIcons();
+    }
+
+    public void saveDeck() {
+        MainApplication.player1.setDeck(new Deck(newDeck));
+        switchToStartScene();
     }
 }
