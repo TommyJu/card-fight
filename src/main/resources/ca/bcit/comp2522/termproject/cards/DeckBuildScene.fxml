@@ -244,7 +244,7 @@
             <Font name="Cooper Black" size="18.0" />
          </font>
       </Text>
-      <Slider fx:id="attackSlider" layoutX="230.0" layoutY="286.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="label" stylesheets="@deck_build_scene.css" value="1.0" />
+      <Slider fx:id="attackSlider" blockIncrement="1.0" layoutX="230.0" layoutY="286.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" onDragDone="#changeCardAttack" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="label" stylesheets="@deck_build_scene.css" value="1.0" />
       <Label fx:id="currentTotalAttack" layoutX="444.0" layoutY="293.0" prefHeight="23.0" prefWidth="74.0" text="100/100" textFill="WHITE">
          <font>
             <Font size="18.0" />

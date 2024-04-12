@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DeckBuildSceneController {
+    private static final int REQUIRED_ATTACK = 100;
     private static Scene scene;
     private static List<Card> newDeck;
     private static int currentCardIndex;
@@ -62,6 +63,8 @@ public class DeckBuildSceneController {
                 cardAttack9, cardAttack10, cardAttack11, cardAttack12, cardAttack13, cardAttack14, cardAttack15,
                 cardAttack16, cardAttack17, cardAttack18, cardAttack19, cardAttack20));
         updateIcons();
+        updateTotalAttack();
+        updateCardPreview();
     }
     public void switchToStartScene() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
@@ -115,6 +118,23 @@ public class DeckBuildSceneController {
             newTotalAttack += card.getAttack();
         }
         totalAttack = newTotalAttack;
+        currentTotalAttack.setText(String.valueOf(newTotalAttack));
+        if (totalAttack == REQUIRED_ATTACK) {
+            saveButton.setDisable(false);
+        } else {
+            saveButton.setDisable(false);
+        }
+    }
+
+    public void changeCardAttack() {
+        int newAttackValue = (int)attackSlider.getValue();
+        Card cardToChange = newDeck.get(currentCardIndex);
+        String cardToChangeElement = cardToChange.getElement();
+        Card newCard = new Card(cardToChangeElement, newAttackValue);
+        newDeck.set(currentCardIndex, newCard);
+        updateTotalAttack();
+        updateCardPreview();
+        updateIcons();
     }
 
     public void changeCardToFire() {
