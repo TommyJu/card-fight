@@ -48,6 +48,21 @@ public class Deck implements Serializable {
         }
     }
 
+    public Deck(List<Card> cards) {
+        this.hand = new ArrayList<>();
+        this.reserve = new LinkedList<>();
+        this.discardedCards = new ArrayList<>();
+
+        for(int i = 0; i < MAX_DECK_SIZE; i++) {
+            Card newCard = cards.get(i);
+            if (i < MAX_CARDS_IN_HAND) {
+                this.hand.add(newCard);
+            } else {
+                this.reserve.add(newCard);
+            }
+        }
+    }
+
     /**
      * Gets the reserve pool of cards.
      * @return a List containing the player's reserve cards
