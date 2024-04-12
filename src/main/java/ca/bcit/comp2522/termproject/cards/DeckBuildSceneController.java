@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.SepiaTone;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
@@ -42,9 +44,10 @@ public class DeckBuildSceneController {
 
     @FXML
     public void initialize() {
-        List<Card> newDeck = MainApplication.player1.getDeck().getReserve();
-        List<Card> PlayerHand = MainApplication.player1.getDeck().getHand();
-        newDeck.addAll(PlayerHand);
+        newDeck = new ArrayList<>();
+        newDeck.addAll(MainApplication.player1.getDeck().getReserve());
+        newDeck.addAll(MainApplication.player1.getDeck().getHand());
+
         currentCardIndex = 0;
         allCardIcons = new ArrayList<>();
         allCardIcons.addAll(Arrays.asList(
@@ -68,5 +71,25 @@ public class DeckBuildSceneController {
             String IconFile = newDeck.get(i).getElement() + ".png";
 
         }
+    }
+    public void updateHighlightedIcon(){
+        for (ImageView icon : allCardIcons) {
+            icon.setEffect(null);
+        }
+        allCardIcons.get(currentCardIndex).setEffect(new SepiaTone());
+    }
+    public void updateCardPreview(){
+        Card newCard = newDeck.get(currentCardIndex);
+        cardPreview.setImage(newCard.getImage());
+    }
+
+    public void previousCard() {
+        currentCardIndex--;
+        updateCardPreview();
+    }
+
+    public void nextCard() {
+        currentCardIndex++;
+        updateCardPreview();
     }
 }
