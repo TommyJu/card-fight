@@ -224,7 +224,7 @@
       <Button fx:id="nextCard" layoutX="376.0" layoutY="168.0" mnemonicParsing="false" onAction="#nextCard" prefHeight="27.0" prefWidth="48.0" text="Next" />
       <Button fx:id="saveButton" disable="true" layoutX="457.0" layoutY="324.0" mnemonicParsing="false" text="Save" />
       <Button fx:id="backButton" layoutX="8.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchToStartScene" prefHeight="11.0" prefWidth="51.0" text="Back" />
-      <ImageView fx:id="selectWaterCard" fitHeight="35.0" fitWidth="28.0" layoutX="247.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="selectWaterCard" fitHeight="35.0" fitWidth="28.0" layoutX="247.0" layoutY="333.0" onMouseClicked="#changeCardToWater" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../water.png" />
          </image>
@@ -234,7 +234,7 @@
             <Image url="@../../../../../grass.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="selectFireCard" fitHeight="35.0" fitWidth="28.0" layoutX="289.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="selectFireCard" fitHeight="35.0" fitWidth="28.0" layoutX="289.0" layoutY="331.0" onMouseClicked="#changeCardToFire" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../fire.png" />
          </image>

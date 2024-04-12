@@ -129,6 +129,7 @@ public class DeckBuildSceneController {
     public void changeCardToGrass() {
         Card cardToChange = newDeck.get(currentCardIndex);
         int cardToChangeAttack = cardToChange.getAttack();
+        // Make a new card with the specified element and preserve the attack value
         Card newCard = new Card("grass", cardToChangeAttack);
         newDeck.set(currentCardIndex, newCard);
         updateCardPreview();
