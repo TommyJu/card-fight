@@ -138,4 +138,29 @@ public class Deck implements Serializable {
         discardedCards.add(hand.get(cardIndex));
         hand.remove(cardIndex);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Deck deck = (Deck) o;
+        return MAX_DECK_SIZE == deck.MAX_DECK_SIZE && MAX_CARDS_IN_HAND == deck.MAX_CARDS_IN_HAND && Objects.equals(reserve, deck.reserve) && Objects.equals(hand, deck.hand) && Objects.equals(discardedCards, deck.discardedCards) && Objects.equals(cardSelected, deck.cardSelected);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(MAX_DECK_SIZE, MAX_CARDS_IN_HAND, reserve, hand, discardedCards, cardSelected);
+    }
+
+    @Override
+    public String toString() {
+        return "Deck{" +
+                "MAX_DECK_SIZE=" + MAX_DECK_SIZE +
+                ", MAX_CARDS_IN_HAND=" + MAX_CARDS_IN_HAND +
+                ", reserve=" + reserve +
+                ", hand=" + hand +
+                ", discardedCards=" + discardedCards +
+                ", cardSelected=" + cardSelected +
+                '}';
+    }
 } // end of class
