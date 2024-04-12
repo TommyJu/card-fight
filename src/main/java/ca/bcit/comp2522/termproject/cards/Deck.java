@@ -1,10 +1,5 @@
 package ca.bcit.comp2522.termproject.cards;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-
 import java.io.Serializable;
 import java.util.*;
 
@@ -23,10 +18,9 @@ public class Deck implements Serializable {
      * The maximum number of cards a player can have in hand
      */
     public final int MAX_CARDS_IN_HAND = 5;
-    private List<Card> reserve;
-    private List<Card> hand;
-    private List<Card> discardedCards;
-    private Card cardSelected;
+    private final List<Card> reserve;
+    private final List<Card> hand;
+    private final List<Card> discardedCards;
 
     /**
      * Constructs a deck with random cards
@@ -52,7 +46,6 @@ public class Deck implements Serializable {
                 this.reserve.add(newCard);
             }
         }
-        this.cardSelected = null;
     }
 
     /**
@@ -77,22 +70,6 @@ public class Deck implements Serializable {
      */
     public List<Card> getDiscardedCards() {
         return this.discardedCards;
-    }
-
-    /**
-     * Gets the card that the user has selected last.
-     * @return the card that has been selected
-     */
-    public Card getCardSelected() {
-        return this.cardSelected;
-    }
-
-    /**
-     * Sets the card that the user has selected.
-     * @param card the card that has been selected
-     */
-    public void setCardSelected(Card card) {
-        this.cardSelected = card;
     }
 
     /**
@@ -122,20 +99,36 @@ public class Deck implements Serializable {
         discardedCards.clear();
         Collections.shuffle(reserve);
 
-        // Replace cards in hand
+        // Deal cards to hand
         for (int i = 0; i < MAX_CARDS_IN_HAND; i++) {
             Card cardInHand = getHand().get(i);
             dealNewCard(cardInHand, i);
         }
     }
 
-    /**
-     * Discards the specified card from the hand.
-     * @param card the Card to be removed from the hand discarded
-     */
-    public void discardCard(Card card) {
-        int cardIndex = hand.indexOf(card);
-        discardedCards.add(hand.get(cardIndex));
-        hand.remove(cardIndex);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Deck deck = (Deck) o;
+        return  Objects.equals(reserve, deck.reserve)
+                && Objects.equals(hand, deck.hand)
+                && Objects.equals(discardedCards, deck.discardedCards);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(MAX_DECK_SIZE, MAX_CARDS_IN_HAND, reserve, hand, discardedCards);
+    }
+
+    @Override
+    public String toString() {
+        return "Deck{" +
+                "MAX_DECK_SIZE=" + MAX_DECK_SIZE +
+                ", MAX_CARDS_IN_HAND=" + MAX_CARDS_IN_HAND +
+                ", reserve=" + reserve +
+                ", hand=" + hand +
+                ", discardedCards=" + discardedCards +
+                '}';
     }
 } // end of class
