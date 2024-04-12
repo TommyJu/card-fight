@@ -131,11 +131,4 @@ public class DeckBuildSceneController {
     public void changeCardToWater() {
 
     }
-    public void updateTotalAttack() {
-        int totalAttack = 0;
-        for (Card card: newDeck) {
-            totalAttack += card.getAttack();
-        }
-        // Idk what to do with this total attack
-    }
 }
