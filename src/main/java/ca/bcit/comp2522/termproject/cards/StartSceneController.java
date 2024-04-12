@@ -51,6 +51,14 @@ public class StartSceneController {
         stage.show();
     }
 
+    public void switchToDeckBuildScene(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("DeckBuildScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void playSailBoatAnimation() {
         TranslateTransition translate = new TranslateTransition();
         translate.setNode(sailBoat);

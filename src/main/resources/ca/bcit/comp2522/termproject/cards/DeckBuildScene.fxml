@@ -9,14 +9,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@deck_build_scene.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.bcit.comp2522.termproject.cards.DeckBuildSceneController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" styleClass="background" stylesheets="@deck_build_scene.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.bcit.comp2522.termproject.cards.DeckBuildSceneController">
    <children>
       <ImageView fx:id="cardIcon10" fitHeight="35.0" fitWidth="28.0" layoutX="30.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../fire.png" />
          </image>
       </ImageView>
-      <Label fx:id="CardAttack10" layoutX="30.0" layoutY="347.0" prefHeight="27.0" prefWidth="28.0" text="10">
+      <Label fx:id="cardAttack10" layoutX="30.0" layoutY="347.0" prefHeight="27.0" prefWidth="28.0" text="10">
          <font>
             <Font size="24.0" />
          </font>
@@ -191,17 +191,17 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="cardIcon11" fitHeight="35.0" fitWidth="28.0" layoutX="75.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cardIcon12" fitHeight="35.0" fitWidth="28.0" layoutX="75.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../fire.png" />
          </image>
       </ImageView>
-      <Label fx:id="cardAttack11" layoutX="75.0" layoutY="122.0" prefHeight="27.0" prefWidth="28.0" text="10">
+      <Label fx:id="cardAttack12" layoutX="75.0" layoutY="122.0" prefHeight="27.0" prefWidth="28.0" text="10">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="cardIcon10" fitHeight="35.0" fitWidth="28.0" layoutX="76.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cardIcon11" fitHeight="35.0" fitWidth="28.0" layoutX="76.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../fire.png" />
          </image>
@@ -211,7 +211,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fitHeight="213.0" fitWidth="152.0" layoutX="224.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cardPreview" fitHeight="213.0" fitWidth="152.0" layoutX="224.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../fire10.png" />
          </image>
@@ -219,7 +219,7 @@
       <Button fx:id="previousCard" layoutX="182.0" layoutY="170.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="46.0" text="Prev" />
       <Button fx:id="nextCard" layoutX="376.0" layoutY="168.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="48.0" text="Next" />
       <Button fx:id="saveButton" disable="true" layoutX="457.0" layoutY="324.0" mnemonicParsing="false" text="Save" />
-      <Button fx:id="backButton" layoutX="8.0" layoutY="13.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="50.0" text="Back" />
+      <Button fx:id="backButton" layoutX="8.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchToStartScene" prefHeight="11.0" prefWidth="51.0" text="Back" />
       <ImageView fx:id="selectWaterCard" fitHeight="35.0" fitWidth="28.0" layoutX="247.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../water.png" />
@@ -241,10 +241,10 @@
          </font>
       </Text>
       <Slider fx:id="attackSlider" layoutX="230.0" layoutY="286.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="label" stylesheets="@deck_build_scene.css" value="1.0" />
-      <Text fx:id="currentTotalAttack" fill="WHITE" layoutX="426.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0/100" textAlignment="CENTER" wrappingWidth="111.01305581699171">
+      <Label fx:id="currentTotalAttack" layoutX="444.0" layoutY="293.0" prefHeight="23.0" prefWidth="74.0" text="100/100" textFill="WHITE">
          <font>
-            <Font name="Cooper Black" size="18.0" />
+            <Font size="18.0" />
          </font>
-      </Text>
+      </Label>
    </children>
 </AnchorPane>
