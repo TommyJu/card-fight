@@ -2,13 +2,12 @@ import ca.bcit.comp2522.termproject.cards.Card;
 import ca.bcit.comp2522.termproject.cards.Deck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+
 public class DeckTest {
-    private final int RESERVE_SIZE = 15;
-    private final int HAND_SIZE = 5;
+    private static final int RESERVE_SIZE = 15;
+    private static final int HAND_SIZE = 5;
     private Deck testDeck;
     private Card firstCardFromReserve;
     private Card firstCardFromHand;
@@ -17,6 +16,7 @@ public class DeckTest {
     private int firstCardFromHandIndex;
     private int middleCardFromHandIndex;
     private int lastCardFromHandIndex;
+
     @BeforeEach
     public void setUp() {
         testDeck = new Deck();
