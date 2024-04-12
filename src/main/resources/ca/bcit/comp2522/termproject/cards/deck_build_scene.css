@@ -4,3 +4,14 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }
+
+.button {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+}
+
+.button:hover {
+    -fx-background-color: white;
+}
+.slider .axis { -fx-tick-label-fill: white; }
+
