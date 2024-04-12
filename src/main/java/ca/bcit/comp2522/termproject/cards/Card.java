@@ -64,7 +64,7 @@ public class Card implements Serializable {
             this.attack = DEFAULT_ATTACK;
         }
 
-        this.imageFile = element + attack + ".png";
+        this.imageFile = this.element + this.attack + ".png";
 //        this.image = new Image(this.imageFile);
     }
 
