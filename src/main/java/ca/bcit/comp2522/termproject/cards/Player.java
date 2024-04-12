@@ -30,14 +30,6 @@ public abstract class Player implements Serializable {
     }
 
     /**
-     * Gets the card selected by player.
-     * @return Card selected by player
-     */
-    public Card getSelectedCard(){
-        return this.getDeck().getCardSelected();
-    }
-
-    /**
      * Gets the name of the player.
      * @return the player name
      */
