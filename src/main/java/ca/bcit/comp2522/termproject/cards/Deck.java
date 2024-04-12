@@ -13,7 +13,7 @@ public class Deck implements Serializable {
     /**
      * The maximum number of cards in a deck
      */
-    public final int MAX_DECK_SIZE = 20;
+    public static final int MAX_DECK_SIZE = 20;
     /**
      * The maximum number of cards a player can have in hand
      */
