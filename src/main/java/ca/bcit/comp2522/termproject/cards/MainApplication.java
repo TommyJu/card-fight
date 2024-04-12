@@ -13,6 +13,8 @@ import java.nio.file.Path;
 
 
 public class MainApplication extends Application {
+    public static final String DEFAULT_SAVE_FILENAME = "default_player";
+    public static final String DEFAULT_SAVE_FILEPATH = "default-save";
     public static final String PLAYER_SAVE_FILEPATH = "player-save";
     public static final String PLAYER_SAVE_FILENAME = "player";
     public static Player player1;
@@ -42,11 +44,9 @@ public class MainApplication extends Application {
             return objectInputStream.readObject();
         } catch (IOException e) {
             System.err.println("Failed to deserialize player.");
-            deleteSaveDirectory(); // Delete the corrupt file on deserialization failure
             return null;
         } catch (ClassNotFoundException e) {
             System.err.println("Deserialization failed, no class found.");
-            deleteSaveDirectory();
             return null;
         }
     }
@@ -54,7 +54,6 @@ public class MainApplication extends Application {
     public static void createSaveDirectory() {
         Path directoryPath = Path.of(PLAYER_SAVE_FILEPATH);
         if (Files.exists(directoryPath)) {
-            System.err.println("This directory already exists.");
             return;
         }
         try {
@@ -83,8 +82,14 @@ public class MainApplication extends Application {
         if (isPlayerSaved()) {
             // Cast deserialized Object to Player
             player1 = (Player)deserializeObject(PLAYER_SAVE_FILEPATH, PLAYER_SAVE_FILENAME);
+            if (player1 == null) { // deserialization failure returns null
+                // Deserialize default player
+                player1 = (Player)deserializeObject(DEFAULT_SAVE_FILEPATH, DEFAULT_SAVE_FILENAME);
+                createSaveDirectory();
+                serializeObject(player1, PLAYER_SAVE_FILEPATH, PLAYER_SAVE_FILENAME);
+            }
         } else { // Create a new player and save directory
-            player1 = new HumanPlayer("Chris", new Deck());
+            player1 = (Player)deserializeObject(DEFAULT_SAVE_FILEPATH, DEFAULT_SAVE_FILENAME);
             createSaveDirectory();
         }
 
