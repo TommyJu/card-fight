@@ -50,5 +50,10 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <Button layoutX="446.0" layoutY="502.0" mnemonicParsing="false" onAction="#quitButtonAction" prefHeight="44.0" prefWidth="108.0" text="Quit" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

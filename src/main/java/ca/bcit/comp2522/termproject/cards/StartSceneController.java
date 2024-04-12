@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.termproject.cards;
 
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -85,5 +86,8 @@ public class StartSceneController {
         MainApplication.serializeObject(player1,
                 MainApplication.PLAYER_SAVE_FILEPATH,
                 MainApplication.PLAYER_SAVE_FILENAME);
+    }
+    public void quitButtonAction() {
+        Platform.exit();
     }
 }
