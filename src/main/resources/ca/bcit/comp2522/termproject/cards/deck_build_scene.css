@@ -1,0 +1,6 @@
+.background {
+    -fx-background-image: url("../../../../../game_background.jpg");
+    -fx-background-size: stretch;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
