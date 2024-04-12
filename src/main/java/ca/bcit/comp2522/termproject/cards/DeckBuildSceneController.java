@@ -118,17 +118,29 @@ public class DeckBuildSceneController {
     }
 
     public void changeCardToFire() {
-
+        Card cardToChange = newDeck.get(currentCardIndex);
+        int cardToChangeAttack = cardToChange.getAttack();
+        Card newCard = new Card("fire", cardToChangeAttack);
+        newDeck.set(currentCardIndex, newCard);
+        updateCardPreview();
+        updateIcons();
     }
 
     public void changeCardToGrass() {
         Card cardToChange = newDeck.get(currentCardIndex);
-        cardToChange.setElement("grass");
+        int cardToChangeAttack = cardToChange.getAttack();
+        Card newCard = new Card("grass", cardToChangeAttack);
+        newDeck.set(currentCardIndex, newCard);
         updateCardPreview();
         updateIcons();
     }
 
     public void changeCardToWater() {
-
+        Card cardToChange = newDeck.get(currentCardIndex);
+        int cardToChangeAttack = cardToChange.getAttack();
+        Card newCard = new Card("water", cardToChangeAttack);
+        newDeck.set(currentCardIndex, newCard);
+        updateCardPreview();
+        updateIcons();
     }
 }
