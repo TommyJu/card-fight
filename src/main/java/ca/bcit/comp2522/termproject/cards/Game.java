@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * Handles Match logic.
@@ -29,6 +30,10 @@ public class Game {
     private final HashMap<Integer, ArrayList<Card>> P2Wins = new HashMap<>();
     private static final boolean[] P1winsArray = {false, true, false};
 
+    /**
+     * Constructs an instance of Game.
+     * @param player1 represents the human player.
+     */
     public Game(Player player1) {
         this.player1 = player1;
         this.AIPlayer = SPLINTER;
@@ -39,9 +44,18 @@ public class Game {
         }
     }
 
+    /**
+     * Gets the Card that is being played this round by the AI.
+     * @return Card representing the Player 2 Card.
+     */
     public Card getAISelectedCard() {
         return this.AISelectedCard;
     }
+
+    /**
+     * Gets the Card that is being played this round by the human player.
+     * @return Card representing the Player 1 card
+     */
     public Card getPlayer1SelectedCard() {
         return this.player1SelectedCard;
     }
@@ -230,7 +244,50 @@ public class Game {
         return this.P2Wins;
     }
 
+    /**
+     * Gets the result of the previous round.
+     * @return true if previous round was winning, else False.
+     */
     public Boolean getIsPreviousRoundWon() {
         return isPreviousRoundWon;
+    }
+
+    /**
+     * Determines if this Game and another Game is equal in value.
+     * @param object any object that can be treated as a Game.
+     * @return True if this Game is the same as the given Game, else False.
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Game game = (Game) object;
+        return Objects.equals(player1SelectedCard, game.player1SelectedCard) && Objects.equals(AISelectedCard, game.AISelectedCard) && Objects.equals(player1, game.player1) && Objects.equals(AIPlayer, game.AIPlayer) && Objects.equals(isPreviousRoundWon, game.isPreviousRoundWon) && Objects.equals(P1Wins, game.P1Wins) && Objects.equals(P2Wins, game.P2Wins);
+    }
+
+    /**
+     * Returns an Integer representation of the state of Game.
+     * @return int representing the game.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(player1SelectedCard, AISelectedCard, player1, AIPlayer, isPreviousRoundWon, P1Wins, P2Wins);
+    }
+
+    /**
+     * Returns a String representation of a Game.
+     * @return String representing the game.
+     */
+    @Override
+    public String toString() {
+        return "Game{" +
+                "player1SelectedCard=" + player1SelectedCard +
+                ", AISelectedCard=" + AISelectedCard +
+                ", player1=" + player1 +
+                ", AIPlayer=" + AIPlayer +
+                ", isPreviousRoundWon=" + isPreviousRoundWon +
+                ", P1Wins=" + P1Wins +
+                ", P2Wins=" + P2Wins +
+                '}';
     }
 } // end of class
