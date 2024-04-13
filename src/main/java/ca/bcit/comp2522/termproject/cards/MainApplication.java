@@ -80,10 +80,8 @@ public class MainApplication extends Application {
     public void start(final Stage primaryStage) {
         music();
         if (isPlayerSaved()) {
-            // Cast deserialized Object to Player
             player1 = (Player)deserializeObject(PLAYER_SAVE_FILEPATH, PLAYER_SAVE_FILENAME);
             if (player1 == null) { // deserialization failure returns null
-                // Deserialize default player
                 player1 = (Player)deserializeObject(DEFAULT_SAVE_FILEPATH, DEFAULT_SAVE_FILENAME);
                 createSaveDirectory();
                 serializeObject(player1, PLAYER_SAVE_FILEPATH, PLAYER_SAVE_FILENAME);
@@ -92,8 +90,6 @@ public class MainApplication extends Application {
             player1 = (Player)deserializeObject(DEFAULT_SAVE_FILEPATH, DEFAULT_SAVE_FILENAME);
             createSaveDirectory();
         }
-        System.out.println(player1.getDeck().getReserve().size() + "\n");
-        System.out.println(player1.getDeck().getHand().size());
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
