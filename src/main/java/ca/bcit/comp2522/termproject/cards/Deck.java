@@ -119,6 +119,7 @@ public class Deck implements Serializable {
             Card cardInHand = getHand().get(i);
             dealNewCard(cardInHand, i);
         }
+        discardedCards.clear();
     }
 
     @Override

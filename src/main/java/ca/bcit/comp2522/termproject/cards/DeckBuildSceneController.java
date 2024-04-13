@@ -129,7 +129,7 @@ public class DeckBuildSceneController {
             newTotalAttack += card.getAttack();
         }
         totalAttack = newTotalAttack;
-        currentTotalAttack.setText(String.valueOf(newTotalAttack) + "/" + String.valueOf(REQUIRED_ATTACK));
+        currentTotalAttack.setText(newTotalAttack + "/" + REQUIRED_ATTACK);
         if (totalAttack > 100) {
             currentTotalAttack.setTextFill(Color.RED);
         } else {

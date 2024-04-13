@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Reflection?>
@@ -18,7 +17,6 @@
             <Image url="@../../../../../master_splinter.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="424.0" mnemonicParsing="false" onAction="#switchToStartScene" text="Scene2" />
       <ImageView fx:id="thirdCardInHand" fitHeight="253.0" fitWidth="181.0" layoutX="403.0" layoutY="507.0" onMouseClicked="#thirdCardOnClick" pickOnBounds="true" preserveRatio="true" styleClass="card">
          <image>
             <Image url="@../../../../../water10.png" />

@@ -92,6 +92,8 @@ public class MainApplication extends Application {
             player1 = (Player)deserializeObject(DEFAULT_SAVE_FILEPATH, DEFAULT_SAVE_FILENAME);
             createSaveDirectory();
         }
+        System.out.println(player1.getDeck().getReserve().size() + "\n");
+        System.out.println(player1.getDeck().getHand().size());
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
