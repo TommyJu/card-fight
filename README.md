@@ -1,20 +1,20 @@
 # Card Fight!!!
-This game is a card game(duh), but with Rock Paper Scissor. Use the elements to beat Master Splinter in a battle of wits.
+This game is a card game(duh), but with Rock Paper Scissors style combat. Use the elements to beat Master Splinter in a battle of wits.
 
 ## Getting Started
-When you first launch the game, default player settings are set. We suggest changing your name or edit your deck to create 
+When you first launch the game, default player settings are loaded. We suggest changing your name or editing your deck to create 
 a personal save. You don't need to, you could hop into a game and challenge splinter first. 
 ## How to Win
 To beat Splinter you will need to play multiple rounds of combat. With each round of combat you will select a card and so will Splinter.
 The winner of a combat round is decided either by element or by attack power. To win by element, your card must be of the superior element
-(water>grass>fire>water). To win by attack power, both you and Splinter must have played cards of the same element. Then, your card must have
+(water>grass>fire). To win by attack power, both you and Splinter must have played cards of the same element. Then, your card must have
 a higher attack power. 
 
 With each round won, you will harness that element you won with. Upon reaching 3 wins with an element
 you claim victory. Or perhaps you are bested by Splinter.
 ## Editing your Deck
 After losing to Splinter you may want to refactor your deck. If you have yet to edit it then you will be using a default deck.
- The default deck is slightly underpowered and we recomend changing it up. 
+ The default deck is slightly underpowered, and we recommend changing it up. 
 
 Your deck is required to have 20 cards and a max total attack power of 100. How you distribute your cards across the elements is up to you.
 
@@ -22,7 +22,7 @@ To navigating the edit deck screen is easy. Use the previous and next buttons to
  Use the slider to change the attack power. Finally, choose the element by clicking on one of the three element icons. To 
 save your changes, click on save. You will be returned to the start menu with your deck saved. The save button will only be clickable
 if your new deck's total attack power is under 100. If after making changes, you realize you don't like them, just hit the back button
-at the top left and your changes will be lost to the winds.
+at the top left and your changes will not be saved.
 
 ## Serialization implementation
 We used serialization to save the player's stats and custom deck. Upon leaving the game screen,
