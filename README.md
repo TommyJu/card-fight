@@ -1,6 +1,12 @@
 # Card Fight!!!
 This game is a card game(duh), but with Rock Paper Scissors style combat. Use the elements to beat Master Splinter in a battle of wits.
 
+# Image Gallery
+![](preview-images/home.png)
+![](preview-images/edit_deck.png)
+![](preview-images/gameplay.png)
+![](preview-images/win.png)
+
 ## Getting Started
 When you first launch the game, default player settings are loaded. We suggest changing your name or editing your deck to create 
 a personal save. You don't need to, you could hop into a game and challenge splinter first. 
